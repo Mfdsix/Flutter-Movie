@@ -72,7 +72,7 @@ void init() {
   locator.registerLazySingleton(() => SearchMovies(locator()));
   locator.registerLazySingleton(() => GetMovieWatchlistStatus(locator()));
   locator.registerLazySingleton(() => SaveMovieToWatchlist(locator()));
-  locator.registerLazySingleton(() => RemoveMovieWatchlist(locator()));
+  locator.registerLazySingleton(() => RemoveMovieFromWatchlist(locator()));
   locator.registerLazySingleton(() => GetWatchlistMovies(locator()));
 
   // repository

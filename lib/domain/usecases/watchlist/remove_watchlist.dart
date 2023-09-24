@@ -8,20 +8,20 @@ abstract class RemoveWatchlist {
   execute(int id);
 }
 
-class RemoveMovieWatchlist{
+class RemoveMovieFromWatchlist{
   final MovieRepository repository;
 
-  RemoveMovieWatchlist(this.repository);
+  RemoveMovieFromWatchlist(this.repository);
 
   Future<Either<Failure, String>> execute(MovieDetail movie) {
     return repository.removeWatchlist(movie);
   }
 }
 
-class RemoveTvWatchlist implements RemoveWatchlist{
+class RemoveTvFromWatchlist implements RemoveWatchlist{
   final TvRepository repository;
 
-  RemoveTvWatchlist(this.repository);
+  RemoveTvFromWatchlist(this.repository);
 
   @override
   Future<Either<Failure, String>> execute(int id) {

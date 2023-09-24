@@ -17,7 +17,7 @@ class MovieDetailNotifier extends ChangeNotifier {
   final GetMovieRecommendations getMovieRecommendations;
   final GetMovieWatchlistStatus getWatchListStatus;
   final SaveMovieToWatchlist saveWatchlist;
-  final RemoveMovieWatchlist removeWatchlist;
+  final RemoveMovieFromWatchlist removeWatchlist;
 
   MovieDetailNotifier({
     required this.getMovieDetail,

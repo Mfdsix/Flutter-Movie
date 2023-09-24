@@ -15,7 +15,7 @@ import 'package:ditonton/domain/usecases/movie/get_movie_recommendations.dart'
     as _i8;
 import 'package:ditonton/domain/usecases/watchlist/get_watchlist_status.dart'
     as _i10;
-import 'package:ditonton/domain/usecases/watchlist/movie/remove_watchlist.dart'
+import 'package:ditonton/domain/usecases/watchlist/remove_watchlist.dart'
     as _i12;
 import 'package:ditonton/domain/usecases/watchlist/save_watchlist.dart' as _i11;
 import 'package:mockito/mockito.dart' as _i1;
@@ -121,12 +121,12 @@ class MockGetMovieRecommendations extends _i1.Mock
       ) as _i5.Future<_i3.Either<_i6.Failure, List<_i9.Movie>>>);
 }
 
-/// A class which mocks [GetWatchListStatus].
+/// A class which mocks [GetMovieWatchlistStatus].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetWatchListStatus extends _i1.Mock
-    implements _i10.GetWatchListStatus {
-  MockGetWatchListStatus() {
+class MockGetMovieWatchlistStatus extends _i1.Mock
+    implements _i10.GetMovieWatchlistStatus {
+  MockGetMovieWatchlistStatus() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -148,11 +148,12 @@ class MockGetWatchListStatus extends _i1.Mock
       ) as _i5.Future<bool>);
 }
 
-/// A class which mocks [SaveWatchlist].
+/// A class which mocks [SaveMovieToWatchlist].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockSaveWatchlist extends _i1.Mock implements _i11.SaveWatchlist {
-  MockSaveWatchlist() {
+class MockSaveMovieToWatchlist extends _i1.Mock
+    implements _i11.SaveMovieToWatchlist {
+  MockSaveMovieToWatchlist() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -182,11 +183,12 @@ class MockSaveWatchlist extends _i1.Mock implements _i11.SaveWatchlist {
       ) as _i5.Future<_i3.Either<_i6.Failure, String>>);
 }
 
-/// A class which mocks [RemoveWatchlist].
+/// A class which mocks [RemoveMovieFromWatchlist].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRemoveWatchlist extends _i1.Mock implements _i12.RemoveWatchlist {
-  MockRemoveWatchlist() {
+class MockRemoveMovieFromWatchlist extends _i1.Mock
+    implements _i12.RemoveMovieFromWatchlist {
+  MockRemoveMovieFromWatchlist() {
     _i1.throwOnMissingStub(this);
   }
 
