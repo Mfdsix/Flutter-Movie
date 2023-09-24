@@ -3,15 +3,15 @@ import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/domain/entities/tv_detail.dart';
 
-abstract class TVRepository {
+abstract class TvRepository {
   Future<Either<Failure, List<Tv>>> getNowPlayingTvs();
   Future<Either<Failure, List<Tv>>> getPopularTvs();
   Future<Either<Failure, List<Tv>>> getTopRatedTvs();
-  Future<Either<Failure, TvDetail>> getDetailTv();
-  Future<Either<Failure, List<Tv>>> getRecommendationTvs();
-  Future<Either<Failure, List<Tv>>> searchTvs();
+  Future<Either<Failure, TvDetail>> getDetailTv(int tvId);
+  Future<Either<Failure, List<Tv>>> getRecommendationTvs(int tvId);
+  Future<Either<Failure, List<Tv>>> searchTvs(String query);
   Future<Either<Failure, String>> saveWatchlist(TvDetail tv);
-  Future<Either<Failure, String>> removeWatchlist(String tvId);
-  Future<Either<Failure, bool>> isAddedToWatchlist(String tvId);
+  Future<Either<Failure, String>> removeWatchlist(int tvId);
+  Future<bool> isAddedToWatchlist(int tvId);
   Future<Either<Failure, List<Tv>>> getWatchlistTvs();
 }
