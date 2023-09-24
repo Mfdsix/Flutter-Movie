@@ -3,7 +3,7 @@ import 'package:ditonton/domain/entities/movie_detail.dart';
 import 'package:equatable/equatable.dart';
 
 class MovieDetailResponse extends Equatable {
-  MovieDetailResponse({
+  const MovieDetailResponse({
     required this.adult,
     required this.backdropPath,
     required this.budget,
