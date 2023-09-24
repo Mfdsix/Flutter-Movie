@@ -1,0 +1,22 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "backdrop_path": "backdrop.png",
+      "first_air_date": "2023-09-09",
+      "genre_ids": [1, 2, 3],
+    "id": 1,
+    "name": "Sinetron Azab",
+    "origin_country": ["Indonesia"],
+    "original_language": "Indonesia",
+    "original_name": "Azab Indosiar",
+    "overview": "Film azab pengingat manusia",
+    "popularity": 8.2,
+    "poster_path": "poster.png",
+    "vote_average": 4.5,
+    "vote_count": 2500000
+    }
+  ],
+  "total_pages": 14,
+  "total_results": 265
+}

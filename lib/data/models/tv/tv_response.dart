@@ -1,6 +1,7 @@
 import 'package:ditonton/data/models/tv/tv_model.dart';
+import 'package:equatable/equatable.dart';
 
-class TvResponse {
+class TvResponse extends Equatable {
   List<TvModel> results;
 
   TvResponse({
@@ -14,4 +15,9 @@ class TvResponse {
   Map<String, dynamic> toJson() => {
     "results": List<dynamic>.from(results.map((x) => x.toJson())),
   };
+
+  @override
+  List<Object?> get props => [
+    results
+  ];
 }
