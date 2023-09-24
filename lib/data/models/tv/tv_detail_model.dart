@@ -141,38 +141,13 @@ class TvDetailModel extends Equatable {
 
   @override
   List<Object?> get props => [
-    adult,
-    backdropPath,
-    createdBy,
-    episodeRunTime,
-    firstAirDate,
-    genres,
-    homepage,
     id,
-    inProduction,
-    languages,
-    lastAirDate,
-    lastEpisodeToAir,
     name,
-    nextEpisodeToAir,
-    networks,
-    numberOfEpisodes,
-    numberOfSeasons,
-    originCountry,
-    originalLanguage,
     originalName,
-    overview,
-    popularity,
-    posterPath,
-    productionCompanies,
-    productionCountries,
-    seasons,
-    spokenLanguages,
-    status,
-    tagline,
     type,
+    status,
     voteAverage,
-    voteCount,
+    voteCount
   ];
 }
 
