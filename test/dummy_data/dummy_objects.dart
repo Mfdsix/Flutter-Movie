@@ -2,6 +2,7 @@ import 'package:ditonton/data/models/movie/movie_table.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
+import 'package:ditonton/domain/entities/tv_detail.dart';
 
 final testMovie = Movie(
   adult: false,
@@ -57,3 +58,35 @@ final testMovieMap = {
   'posterPath': 'posterPath',
   'title': 'title',
 };
+
+final testTvDetail = TvDetail(
+    adult: false,
+    backdropPath: "/6LWy0jvMpmjoS9fojNgHIKoWL05.jpg",
+    episodeRunTime: const [60],
+    firstAirDate: "2011-04-17",
+    genres: [
+      Genre(id: 17, name: "Sci-Fi & Fantasy"),
+      Genre(id: 18, name: "Drama"),
+      Genre(id: 10759, name: "Action & Adventure")
+    ],
+    homepage: "http://www.hbo.com/game-of-thrones",
+    id: 1399,
+    inProduction: false,
+    languages: const ["en"],
+    lastAirDate: "2019-05-19",
+    name: "Game of Thrones",
+    nextEpisodeToAir: null,
+    numberOfEpisodes: 73,
+    numberOfSeasons: 8,
+    originCountry: const ["US"],
+    originalLanguage: "en",
+    originalName: "Game of Thrones",
+    overview:
+        "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond.",
+    popularity: 346.098,
+    posterPath: "/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg",
+    status: "Ended",
+    tagline: "Winter Is Coming",
+    type: "Scripted",
+    voteAverage: 8.438,
+    voteCount: 21390);

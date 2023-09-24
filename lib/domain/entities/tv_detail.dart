@@ -7,13 +7,13 @@ class TvDetail extends Equatable {
 
   // List<CreatedBy> createdBy;
   List<int> episodeRunTime;
-  DateTime firstAirDate;
+  String firstAirDate;
   List<Genre> genres;
   String homepage;
   int id;
   bool inProduction;
   List<String> languages;
-  DateTime lastAirDate;
+  String lastAirDate;
 
   // LastEpisodeToAir lastEpisodeToAir;
   String name;
