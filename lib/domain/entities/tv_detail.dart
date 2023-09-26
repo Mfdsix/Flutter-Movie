@@ -42,7 +42,6 @@ class TvDetail extends Equatable {
   TvDetail({
     required this.adult,
     required this.backdropPath,
-    // required this.createdBy,
     required this.episodeRunTime,
     required this.firstAirDate,
     required this.genres,
@@ -51,10 +50,7 @@ class TvDetail extends Equatable {
     required this.inProduction,
     required this.languages,
     required this.lastAirDate,
-    // required this.lastEpisodeToAir,
     required this.name,
-    required this.nextEpisodeToAir,
-    // required this.networks,
     required this.numberOfEpisodes,
     required this.numberOfSeasons,
     required this.originCountry,

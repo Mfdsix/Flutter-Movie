@@ -115,8 +115,8 @@ void main() {
   });
 
   group('get tv series detail', () {
-    final tId = 1;
-    final tMovieDetail = TvDetailModel.fromJson(
+    const tId = 1;
+    final tMovieDetail = TvDetailResponse.fromJson(
         json.decode(readJson('dummy_data/tv_detail.json')));
 
     test('should return movie detail when the response code is 200', () async {

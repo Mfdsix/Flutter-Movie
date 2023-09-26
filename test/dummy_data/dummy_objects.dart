@@ -2,6 +2,7 @@ import 'package:ditonton/data/models/movie_table.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
+import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/domain/entities/tv_detail.dart';
 
 final testMovie = Movie(
@@ -45,6 +46,13 @@ final testWatchlistMovie = Movie.watchlist(
   overview: 'overview',
 );
 
+final testWatchlistTv = Tv.watchlist(
+  id: 1,
+  name: 'title',
+  posterPath: 'posterPath',
+  overview: 'overview',
+);
+
 final testMovieTable = MovieTable(
   id: 1,
   title: 'title',
@@ -75,7 +83,6 @@ final testTvDetail = TvDetail(
     languages: const ["en"],
     lastAirDate: "2019-05-19",
     name: "Game of Thrones",
-    nextEpisodeToAir: null,
     numberOfEpisodes: 73,
     numberOfSeasons: 8,
     originCountry: const ["US"],
