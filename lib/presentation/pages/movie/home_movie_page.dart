@@ -2,17 +2,20 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
-import 'package:ditonton/presentation/pages/movie_detail_page.dart';
-import 'package:ditonton/presentation/pages/popular_movies_page.dart';
-import 'package:ditonton/presentation/pages/search_page.dart';
-import 'package:ditonton/presentation/pages/top_rated_movies_page.dart';
-import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
+import 'package:ditonton/presentation/pages/movie//movie_detail_page.dart';
+import 'package:ditonton/presentation/pages/movie/popular_movies_page.dart';
+import 'package:ditonton/presentation/pages/movie/search_movie_page.dart';
+import 'package:ditonton/presentation/pages/movie/top_rated_movies_page.dart';
+import 'package:ditonton/presentation/pages/tv/home_tv_page.dart';
+import 'package:ditonton/presentation/pages/watchlist/watchlist_movies_page.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/presentation/provider/movie/movie_list_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class HomeMoviePage extends StatefulWidget {
+  static const ROUTE_NAME = '/movie';
+
   const HomeMoviePage({super.key});
 
   @override
@@ -51,6 +54,13 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               },
             ),
             ListTile(
+              leading: const Icon(Icons.tv),
+              title: const Text('Tv Series'),
+              onTap: () {
+                Navigator.pushNamed(context, HomeTvPage.ROUTE_NAME);
+              },
+            ),
+            ListTile(
               leading: Icon(Icons.save_alt),
               title: Text('Watchlist'),
               onTap: () {
@@ -72,7 +82,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, SearchPage.ROUTE_NAME);
+              Navigator.pushNamed(context, SearchMoviePage.ROUTE_NAME);
             },
             icon: Icon(Icons.search),
           )
