@@ -1,52 +1,51 @@
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/common/state_enum.dart';
-import 'package:ditonton/domain/entities/movie.dart';
-import 'package:ditonton/domain/usecases/movie/get_popular_movies.dart';
-import 'package:ditonton/presentation/provider/popular_movies_notifier.dart';
+import 'package:ditonton/domain/entities/tv.dart';
+import 'package:ditonton/domain/usecases/tv/get_popular_tvs.dart';
+import 'package:ditonton/presentation/provider/tv/popular_tvs_notifier.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'popular_movies_notifier_test.mocks.dart';
+import 'popular_tvs_notifier_test.mocks.dart';
 
-@GenerateMocks([GetPopularMovies])
+@GenerateMocks([GetPopularTvs])
 void main() {
-  late MockGetPopularMovies mockGetPopularMovies;
-  late PopularMoviesNotifier notifier;
+  late MockGetPopularTvs mockGetPopularMovies;
+  late PopularTvsNotifier notifier;
   late int listenerCallCount;
 
   setUp(() {
     listenerCallCount = 0;
-    mockGetPopularMovies = MockGetPopularMovies();
-    notifier = PopularMoviesNotifier(mockGetPopularMovies)
+    mockGetPopularMovies = MockGetPopularTvs();
+    notifier = PopularTvsNotifier(mockGetPopularMovies)
       ..addListener(() {
         listenerCallCount++;
       });
   });
 
-  final tMovie = Movie(
-    adult: false,
-    backdropPath: 'backdropPath',
-    genreIds: [1, 2, 3],
-    id: 1,
-    originalTitle: 'originalTitle',
-    overview: 'overview',
-    popularity: 1,
-    posterPath: 'posterPath',
-    releaseDate: 'releaseDate',
-    title: 'title',
-    video: false,
-    voteAverage: 1,
-    voteCount: 1,
+  final tv = Tv(
+      backdropPath: "backdrop.png",
+      firstAirDate: "2023-09-09",
+      genreIds: const [1, 2, 3],
+      id: 1,
+      name: "Sinetron Azab",
+      originalCountry: const ["Indonesia"],
+      originalLanguage: "Indonesia",
+      originalName: "Sinetron Indosiar",
+      overview: "Sinetron indosiar terbaik",
+      popularity: 4.5,
+      posterPath: "poster.png",
+      voteAverage: 4.8,
+      voteCount: 900
   );
-
-  final tMovieList = <Movie>[tMovie];
+  final tvs = <Tv>[tv];
 
   test('should change state to loading when usecase is called', () async {
     // arrange
     when(mockGetPopularMovies.execute())
-        .thenAnswer((_) async => Right(tMovieList));
+        .thenAnswer((_) async => Right(tvs));
     // act
     notifier.fetchPopularMovies();
     // assert
@@ -57,12 +56,12 @@ void main() {
   test('should change movies data when data is gotten successfully', () async {
     // arrange
     when(mockGetPopularMovies.execute())
-        .thenAnswer((_) async => Right(tMovieList));
+        .thenAnswer((_) async => Right(tvs));
     // act
     await notifier.fetchPopularMovies();
     // assert
     expect(notifier.state, RequestState.Loaded);
-    expect(notifier.movies, tMovieList);
+    expect(notifier.movies, tvs);
     expect(listenerCallCount, 2);
   });
 
