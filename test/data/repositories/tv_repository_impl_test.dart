@@ -187,7 +187,7 @@ void main() {
   group('Get Movie Detail', () {
     const tId = 1;
     final tvResponse = TvDetailResponse(
-        adult: true,
+        adult: false,
         backdropPath: "backdrop.png",
         createdBy: [
           CreatedBy(
@@ -244,7 +244,7 @@ void main() {
       final result = await repository.getDetailTv(tId);
       // assert
       verify(mockRemoteDataSource.getMovieDetail(tId));
-      expect(result, equals(Right(testMovieDetail)));
+      expect(result, equals(Right(testTvDetail)));
     });
 
     test(
@@ -365,7 +365,7 @@ void main() {
   group('save watchlist', () {
     test('should return success message when saving successful', () async {
       // arrange
-      when(mockLocalDataSource.insertWatchlist(testMovieTable))
+      when(mockLocalDataSource.insertWatchlist(testTvTable))
           .thenAnswer((_) async => 'Added to Watchlist');
       // act
       final result = await repository.saveWatchlist(testTvDetail);
@@ -375,7 +375,7 @@ void main() {
 
     test('should return DatabaseFailure when saving unsuccessful', () async {
       // arrange
-      when(mockLocalDataSource.insertWatchlist(testMovieTable))
+      when(mockLocalDataSource.insertWatchlist(testTvTable))
           .thenThrow(DatabaseException('Failed to add watchlist'));
       // act
       final result = await repository.saveWatchlist(testTvDetail);
@@ -387,7 +387,7 @@ void main() {
   group('remove watchlist', () {
     test('should return success message when remove successful', () async {
       // arrange
-      when(mockLocalDataSource.removeWatchlist(testMovieTable))
+      when(mockLocalDataSource.removeWatchlist(testTvTable))
           .thenAnswer((_) async => 'Removed from watchlist');
       // act
       final result = await repository.removeWatchlist(testTvDetail);
@@ -397,7 +397,7 @@ void main() {
 
     test('should return DatabaseFailure when remove unsuccessful', () async {
       // arrange
-      when(mockLocalDataSource.removeWatchlist(testMovieTable))
+      when(mockLocalDataSource.removeWatchlist(testTvTable))
           .thenThrow(DatabaseException('Failed to remove watchlist'));
       // act
       final result = await repository.removeWatchlist(testTvDetail);

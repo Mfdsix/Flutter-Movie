@@ -1,4 +1,6 @@
+import 'package:ditonton/data/models/genre_model.dart';
 import 'package:ditonton/data/models/movie_table.dart';
+import 'package:ditonton/data/models/tv/tv_detail_model.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
@@ -60,6 +62,12 @@ final testMovieTable = MovieTable(
   overview: 'overview',
 );
 
+const testTvTable = MovieTable(
+    id: 1,
+    title: 'Tv',
+    posterPath: 'poster.png',
+    overview: 'Overview');
+
 final testMovieMap = {
   'id': 1,
   'overview': 'overview',
@@ -69,31 +77,29 @@ final testMovieMap = {
 
 final testTvDetail = TvDetail(
     adult: false,
-    backdropPath: "/6LWy0jvMpmjoS9fojNgHIKoWL05.jpg",
-    episodeRunTime: const [60],
-    firstAirDate: "2011-04-17",
+    backdropPath: "backdrop.png",
+    episodeRunTime: const [60, 120],
+    firstAirDate: "2023-09-09",
     genres: [
-      Genre(id: 17, name: "Sci-Fi & Fantasy"),
-      Genre(id: 18, name: "Drama"),
-      Genre(id: 10759, name: "Action & Adventure")
+      Genre(id: 1, name: "genre"),
+      Genre(id: 2, name: "genre 2"),
     ],
-    homepage: "http://www.hbo.com/game-of-thrones",
-    id: 1399,
+    homepage: "/home-page",
+    id: 1,
     inProduction: false,
-    languages: const ["en"],
-    lastAirDate: "2019-05-19",
-    name: "Game of Thrones",
-    numberOfEpisodes: 73,
-    numberOfSeasons: 8,
-    originCountry: const ["US"],
-    originalLanguage: "en",
-    originalName: "Game of Thrones",
-    overview:
-        "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond.",
-    popularity: 346.098,
-    posterPath: "/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg",
-    status: "Ended",
-    tagline: "Winter Is Coming",
-    type: "Scripted",
-    voteAverage: 8.438,
-    voteCount: 21390);
+    languages: const ["Indonesia"],
+    lastAirDate: "2023-09-09",
+    name: "Tv",
+    numberOfEpisodes: 20,
+    numberOfSeasons: 5,
+    originCountry: const ["Indonesia"],
+    originalLanguage: "Indonesia",
+    originalName: "Tv",
+    overview: "Overview",
+    popularity: 8.9,
+    posterPath: "poster.png",
+    status: "started",
+    tagline: "tagline",
+    type: "type",
+    voteAverage: 4.6,
+    voteCount: 9000);
