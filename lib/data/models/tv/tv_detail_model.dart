@@ -30,7 +30,7 @@ class TvDetailResponse extends Equatable {
   final double voteAverage;
   final int voteCount;
 
-  TvDetailResponse({
+  const TvDetailResponse({
     required this.adult,
     required this.backdropPath,
     required this.createdBy,
@@ -154,10 +154,10 @@ class TvDetailResponse extends Equatable {
 
 class CreatedBy {
   int id;
-  String creditId;
+  String? creditId;
   String name;
   int gender;
-  String profilePath;
+  String? profilePath;
 
   CreatedBy({
     required this.id,
