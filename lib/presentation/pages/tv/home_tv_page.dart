@@ -3,6 +3,8 @@ import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
+import 'package:ditonton/presentation/pages/movie/home_movie_page.dart';
+import 'package:ditonton/presentation/pages/tv/on_airing_tv_page.dart';
 import 'package:ditonton/presentation/pages/tv/popular_tv_page.dart';
 import 'package:ditonton/presentation/pages/tv/search_tv_page.dart';
 import 'package:ditonton/presentation/pages/tv/top_rated_tv_page.dart';
@@ -49,7 +51,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
               leading: const Icon(Icons.movie),
               title: const Text('Movies'),
               onTap: () {
-                Navigator.pushNamed(context, "/home");
+                Navigator.pushNamed(context, HomeMoviePage.ROUTE_NAME);
               },
             ),
             ListTile(
@@ -91,9 +93,10 @@ class _HomeTvPageState extends State<HomeTvPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Now Playing',
-                style: kHeading6,
+              _buildSubHeading(
+                title: 'On Airing',
+                onTap: () =>
+                    Navigator.pushNamed(context, OnAiringTvPage.ROUTE_NAME),
               ),
               Consumer<TvListNotifier>(builder: (context, data, child) {
                 final state = data.nowPlayingState;

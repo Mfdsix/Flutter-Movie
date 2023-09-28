@@ -33,7 +33,7 @@ void main() {
             () async {
           // arrange
           when(mockHttpClient
-              .get(Uri.parse('$BASE_URL/tv/now_playing?$API_KEY')))
+              .get(Uri.parse('$BASE_URL/tv/on_the_air?$API_KEY')))
               .thenAnswer((_) async =>
               http.Response(readJson('dummy_data/tv_list_response.json'), 200));
           // act
@@ -47,7 +47,7 @@ void main() {
             () async {
           // arrange
           when(mockHttpClient
-              .get(Uri.parse('$BASE_URL/tv/now_playing?$API_KEY')))
+              .get(Uri.parse('$BASE_URL/tv/on_the_air?$API_KEY')))
               .thenAnswer((_) async => http.Response('Not Found', 404));
           // act
           final call = dataSource.getNowPlayingMovies();
