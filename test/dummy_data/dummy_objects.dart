@@ -61,10 +61,7 @@ final testMovieTable = MovieTable(
 );
 
 const testTvTable = MovieTable(
-    id: 1,
-    title: 'Tv',
-    posterPath: 'poster.png',
-    overview: 'Overview');
+    id: 1, title: 'Tv', posterPath: 'poster.png', overview: 'Overview');
 
 final testMovieMap = {
   'id': 1,
@@ -72,6 +69,23 @@ final testMovieMap = {
   'posterPath': 'posterPath',
   'title': 'title',
 };
+
+final testTv = Tv(
+    backdropPath: "backdrop.png",
+    firstAirDate: "2023-09-09",
+    id: 1,
+    name: "Tv",
+    originalLanguage: "Indonesia",
+    originalName: "Tv",
+    overview: "Overview",
+    popularity: 8.9,
+    posterPath: "poster.png",
+    voteAverage: 4.6,
+    voteCount: 900,
+    genreIds: const [1, 2, 3],
+    originalCountry: const ["indonesia"]);
+
+final testTvList = [testTv];
 
 final testTvDetail = TvDetail(
     adult: false,

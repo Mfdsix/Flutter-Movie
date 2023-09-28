@@ -1,0 +1,1 @@
+genhtml coverage/lcov.info -o coverage --no-function-coverage -s -p /Users/maputh/Development/Mobile/Projects/Flutter/dcdg-movie/coverage
