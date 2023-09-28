@@ -1,6 +1,4 @@
-import 'package:ditonton/data/models/genre_model.dart';
 import 'package:ditonton/data/models/movie_table.dart';
-import 'package:ditonton/data/models/tv/tv_detail_model.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
@@ -10,7 +8,7 @@ import 'package:ditonton/domain/entities/tv_detail.dart';
 final testMovie = Movie(
   adult: false,
   backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
-  genreIds: [14, 28],
+  genreIds: const [14, 28],
   id: 557,
   originalTitle: 'Spider-Man',
   overview:
@@ -102,4 +100,4 @@ final testTvDetail = TvDetail(
     tagline: "tagline",
     type: "type",
     voteAverage: 4.6,
-    voteCount: 9000);
+    voteCount: 900);
