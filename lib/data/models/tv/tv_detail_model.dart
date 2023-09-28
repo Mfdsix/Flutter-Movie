@@ -3,32 +3,32 @@ import 'package:ditonton/domain/entities/tv_detail.dart';
 import 'package:equatable/equatable.dart';
 
 class TvDetailResponse extends Equatable {
-  bool adult;
-  String backdropPath;
-  List<CreatedBy> createdBy;
-  List<int> episodeRunTime;
-  String firstAirDate;
-  List<GenreModel> genres;
-  String homepage;
-  int id;
-  bool inProduction;
-  List<String> languages;
-  String lastAirDate;
-  String name;
-  int numberOfEpisodes;
-  int numberOfSeasons;
-  List<String> originCountry;
-  String originalLanguage;
-  String originalName;
-  String overview;
-  double popularity;
-  String posterPath;
-  List<Season> seasons;
-  String status;
-  String tagline;
-  String type;
-  double voteAverage;
-  int voteCount;
+  final bool adult;
+  final String backdropPath;
+  final List<CreatedBy> createdBy;
+  final List<int> episodeRunTime;
+  final String firstAirDate;
+  final List<GenreModel> genres;
+  final String homepage;
+  final int id;
+  final bool inProduction;
+  final List<String> languages;
+  final String lastAirDate;
+  final String name;
+  final int numberOfEpisodes;
+  final int numberOfSeasons;
+  final List<String> originCountry;
+  final String originalLanguage;
+  final String originalName;
+  final String overview;
+  final double popularity;
+  final String posterPath;
+  final List<Season> seasons;
+  final String status;
+  final String tagline;
+  final String type;
+  final double voteAverage;
+  final int voteCount;
 
   TvDetailResponse({
     required this.adult,
