@@ -8,6 +8,8 @@ import 'package:provider/provider.dart';
 class WatchlistTvPage extends StatefulWidget {
   static const ROUTE_NAME = '/watchlist/tv';
 
+  const WatchlistTvPage({super.key});
+
   @override
   _WatchlistTvPageState createState() => _WatchlistTvPageState();
 }
@@ -28,6 +30,7 @@ class _WatchlistTvPageState extends State<WatchlistTvPage>
     routeObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
+  @override
   void didPopNext() {
     Provider.of<WatchlistTvNotifier>(context, listen: false)
         .fetchWatchlistMovies();
