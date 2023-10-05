@@ -40,6 +40,9 @@ class MovieRecommendationHasData extends MovieDetailState {
 class AddWatchlistSuccess extends MovieDetailState {}
 class AddWatchlistFailed extends MovieDetailState {}
 
+class RemoveWatchlistSuccess extends MovieDetailState {}
+class RemoveWatchlistFailed extends MovieDetailState {}
+
 class WatchlistStatusFetched extends MovieDetailState {
   final bool watchlistStatus;
 

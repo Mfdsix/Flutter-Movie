@@ -6,10 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 part 'tv_on_airing_event.dart';
 part 'tv_on_airing_state.dart';
 
-class TvOnAirinhBloc extends Bloc<TvOnAiringEvent, TvOnAiringState>{
+class TvOnAiringBloc extends Bloc<TvOnAiringEvent, TvOnAiringState>{
   final GetNowPlayingTvs _getNowPlayingTvs;
 
-  TvOnAirinhBloc(
+  TvOnAiringBloc(
       this._getNowPlayingTvs,
       ) : super(OnAiringTvEmpty()){
         on<OnFetchOnAiringTv>((event, emit) async {

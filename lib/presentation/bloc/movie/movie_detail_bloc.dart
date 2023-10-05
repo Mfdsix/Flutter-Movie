@@ -70,10 +70,10 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState>{
 
       result.fold(
               (failure) {
-            emit(AddWatchlistFailed());
+            emit(RemoveWatchlistFailed());
           },
               (successMessage) {
-            emit(AddWatchlistSuccess());
+            emit(RemoveWatchlistSuccess());
           }
       );
 

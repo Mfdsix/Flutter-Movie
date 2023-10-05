@@ -40,6 +40,9 @@ class TvRecommendationHasData extends TvDetailState {
 class AddWatchlistSuccess extends TvDetailState {}
 class AddWatchlistFailed extends TvDetailState {}
 
+class RemoveWatchlistSuccess extends TvDetailState {}
+class RemoveWatchlistFailed extends TvDetailState {}
+
 class WatchlistStatusFetched extends TvDetailState {
   final bool watchlistStatus;
 

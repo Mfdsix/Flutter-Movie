@@ -115,3 +115,37 @@ final testTvDetail = TvDetail(
     type: "type",
     voteAverage: 4.6,
     voteCount: 900);
+
+final tMovie = Movie(
+    adult: false,
+    backdropPath: 'backdropPath',
+    genreIds: [1, 2, 3],
+    id: 1,
+    originalTitle: 'originalTitle',
+    overview: 'overview',
+    popularity: 1,
+    posterPath: 'posterPath',
+    releaseDate: 'releaseDate',
+    title: 'title',
+    video: false,
+    voteAverage: 1,
+    voteCount: 1,
+  );
+  final tMovieList = <Movie>[tMovie];
+
+  final tv = Tv(
+      backdropPath: "backdrop.png",
+      firstAirDate: "2023-09-09",
+      genreIds: const [1, 2, 3],
+      id: 1,
+      name: "Sinetron Azab",
+      originalCountry: const ["Indonesia"],
+      originalLanguage: "Indonesia",
+      originalName: "Sinetron Indosiar",
+      overview: "Sinetron indosiar terbaik",
+      popularity: 4.5,
+      posterPath: "poster.png",
+      voteAverage: 4.8,
+      voteCount: 900
+  );
+  final tvs = <Tv>[tv];

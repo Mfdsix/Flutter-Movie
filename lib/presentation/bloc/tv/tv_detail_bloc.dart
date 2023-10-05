@@ -69,10 +69,10 @@ class TvDetailBloc extends Bloc<TvDetailEvent, TvDetailState>{
 
       result.fold(
               (failure) {
-            emit(AddWatchlistFailed());
+            emit(RemoveWatchlistFailed());
           },
               (successMessage) {
-            emit(AddWatchlistSuccess());
+            emit(RemoveWatchlistSuccess());
           }
       );
 
