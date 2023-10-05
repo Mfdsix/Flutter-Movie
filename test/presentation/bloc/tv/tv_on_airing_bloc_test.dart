@@ -8,7 +8,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../../dummy_data/dummy_objects.dart';
-import '../../provider/tv/tv_list_notifier_test.mocks.dart';
+import 'tv_on_airing_bloc_test.mocks.dart';
 
 @GenerateMocks([GetNowPlayingTvs])
 void main() {
