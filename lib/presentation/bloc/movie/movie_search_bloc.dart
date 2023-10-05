@@ -1,3 +1,4 @@
+import 'package:ditonton/common/debounce.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/usecases/movie/search_movies.dart';
 import 'package:equatable/equatable.dart';
@@ -25,7 +26,7 @@ class MovieSearchBloc extends Bloc<MovieSearchEvent, MovieSearchState>{
               emit(SearchMoviesHasData(movies));
             },
             );
-        });
+        }, transformer: debounce(const Duration(microseconds: 500)));
       }
 }
 

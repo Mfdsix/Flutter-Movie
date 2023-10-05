@@ -36,7 +36,7 @@ void main() {
           return bloc;
         },
         act: (bloc) => bloc.add(OnSearchMovies(query)),
-        wait: const Duration(microseconds: 100),
+        wait: const Duration(microseconds: 500),
         expect: () =>
             [SearchMoviesLoading(), SearchMoviesHasData(tMovieList)],
         verify: (bloc) {
@@ -52,7 +52,7 @@ void main() {
           return bloc;
         },
         act: (bloc) => bloc.add(OnSearchMovies(query)),
-        wait: const Duration(microseconds: 100),
+        wait: const Duration(microseconds: 500),
         expect: () =>
             [SearchMoviesLoading(), const SearchMoviesError("server error")],
         verify: (bloc) {

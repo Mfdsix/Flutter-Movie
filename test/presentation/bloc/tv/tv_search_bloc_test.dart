@@ -20,7 +20,7 @@ void main() {
     bloc = TvSearchBloc(mockSearchTvs);
   });
 
-  final query = "Best Movie";
+  final query = "Best Tv";
 
   group('Search Tv', () {
     test('initial state should be empty', () {
@@ -36,7 +36,7 @@ void main() {
           return bloc;
         },
         act: (bloc) => bloc.add(OnSearchTv(query)),
-        wait: const Duration(microseconds: 100),
+        wait: const Duration(milliseconds: 500),
         expect: () =>
             [SearchTvsLoading(), SearchTvsHasData(tvs)],
         verify: (bloc) {
@@ -52,7 +52,7 @@ void main() {
           return bloc;
         },
         act: (bloc) => bloc.add(OnSearchTv(query)),
-        wait: const Duration(microseconds: 100),
+        wait: const Duration(milliseconds: 500),
         expect: () =>
             [SearchTvsLoading(), const SearchTvsError("server error")],
         verify: (bloc) {

@@ -1,3 +1,4 @@
+import 'package:ditonton/common/debounce.dart';
 import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/domain/usecases/tv/search_tvs.dart';
 import 'package:equatable/equatable.dart';
@@ -25,7 +26,7 @@ class TvSearchBloc extends Bloc<TvSearchEvent, TvSearchState>{
               emit(SearchTvsHasData(tvs));
             },
             );
-        });
+        }, transformer: debounce(const Duration(milliseconds: 500)));
       }
 }
 
