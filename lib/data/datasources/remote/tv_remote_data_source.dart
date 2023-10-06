@@ -5,7 +5,7 @@ import 'package:ditonton/data/datasources/remote/config.dart';
 import 'package:ditonton/data/models/tv/tv_detail_model.dart';
 import 'package:ditonton/data/models/tv/tv_model.dart';
 import 'package:ditonton/data/models/tv/tv_response.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/io_client.dart';
 
 abstract class TvRemoteDataSource {
   Future<List<TvModel>> getNowPlayingMovies();
@@ -20,7 +20,7 @@ class TvRemoteDataSourceImpl implements TvRemoteDataSource {
   static const API_KEY = THEMOVIEDB_API_KEY;
   static const BASE_URL = THEMOVIEDB_BASE_URL;
 
-  final http.Client client;
+  final IOClient client;
 
   TvRemoteDataSourceImpl({required this.client});
 
