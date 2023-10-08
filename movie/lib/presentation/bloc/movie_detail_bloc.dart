@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/domain/entities/movie.dart';
 import 'package:movie/domain/usecases/get_movie_detail.dart';
 import 'package:movie/domain/usecases/get_movie_recommendations.dart';
+import 'package:watchlist/domain/usecases/get_watchlist_status.dart';
+import 'package:watchlist/domain/usecases/remove_watchlist.dart';
+import 'package:watchlist/domain/usecases/save_watchlist.dart';
 
 import '../../domain/entities/movie_detail.dart';
 
@@ -12,9 +15,9 @@ part 'movie_detail_state.dart';
 class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState>{
   final GetMovieDetail _getMovieDetail;
   final GetMovieRecommendations _getMovieRecommendations;
-  final GetMovieWatchlistStatus _getWatchListStatus;
-  final SaveMovieToWatchlist _saveWatchlist;
-  final RemoveMovieFromWatchlist _removeWatchlist;
+  final GetWatchlistStatus _getWatchListStatus;
+  final SaveWatchlist _saveWatchlist;
+  final RemoveWatchlist _removeWatchlist;
 
   MovieDetailBloc(this._getMovieDetail, this._getMovieRecommendations, this._getWatchListStatus, this._saveWatchlist, this._removeWatchlist) : super(MovieDetailEmpty()) {
     on<OnFetchMovieDetail>((event, emit) async {
@@ -46,7 +49,7 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState>{
     on<OnAddWatchlist>((event, emit) async {
       final movie = event.movieDetail;
 
-      final result = await _saveWatchlist.execute(movie);
+      final result = await _saveWatchlist.execute(movie.toWatchlist());
 
       result.fold(
           (failure) {
@@ -63,7 +66,7 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState>{
     on<OnRemoveWatchlist>((event, emit) async {
       final movie = event.movieDetail;
 
-      final result = await _removeWatchlist.execute(movie);
+      final result = await _removeWatchlist.execute(movie.toWatchlist());
 
       result.fold(
               (failure) {

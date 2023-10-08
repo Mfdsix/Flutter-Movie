@@ -1,5 +1,6 @@
 import 'package:core/common/domain/entities/genre.dart';
 import 'package:equatable/equatable.dart';
+import 'package:watchlist/data/models/watchlist_table.dart';
 
 class MovieDetail extends Equatable {
   const MovieDetail({
@@ -29,6 +30,13 @@ class MovieDetail extends Equatable {
   final String title;
   final double voteAverage;
   final int voteCount;
+
+  WatchlistTable toWatchlist() => WatchlistTable(
+      id: id,
+      title: title,
+      posterPath: posterPath,
+      overview: overview,
+      type: "movie");
 
   @override
   List<Object?> get props => [
