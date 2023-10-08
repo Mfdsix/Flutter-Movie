@@ -1,5 +1,5 @@
 import 'package:ditonton/data/datasources/helpers/database_helper.dart';
-import 'package:ditonton/data/datasources/local/movie_local_data_source.dart';
+import 'package:ditonton/data/datasources/local/watchlist_local_data_source.dart';
 import '../movie/lib/data/datasources/remote/movie_remote_data_source.dart';
 import 'package:ditonton/data/datasources/remote/tv_remote_data_source.dart';
 import 'package:ditonton/data/repositories/movie_repository_impl.dart';
@@ -17,7 +17,7 @@ import 'package:ditonton/domain/usecases/tv/get_recommendation_tvs.dart';
 import 'package:ditonton/domain/usecases/tv/get_top_rated_tvs.dart';
 import 'package:ditonton/domain/usecases/tv/get_tv_detail.dart';
 import 'package:ditonton/domain/usecases/tv/search_tvs.dart';
-import 'package:ditonton/domain/usecases/watchlist/get_watchlist_movies.dart';
+import 'package:ditonton/domain/usecases/watchlist/get_watchlist.dart';
 import 'package:ditonton/domain/usecases/watchlist/get_watchlist_status.dart';
 import 'package:ditonton/domain/usecases/watchlist/remove_watchlist.dart';
 import 'package:ditonton/domain/usecases/watchlist/save_watchlist.dart';
