@@ -1,7 +1,7 @@
 library watchlist;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'data/models/watchlist_table.dart';
+export 'domain/usecases/get_watchlist.dart';
+export 'domain/usecases/get_watchlist_status.dart';
+export 'domain/usecases/save_watchlist.dart';
+export 'domain/usecases/remove_watchlist.dart';
