@@ -1,11 +1,8 @@
-import 'package:ditonton/domain/entities/movie.dart';
-import 'package:ditonton/domain/usecases/movie/get_movie_detail.dart';
-import 'package:ditonton/domain/usecases/movie/get_movie_recommendations.dart';
-import 'package:ditonton/domain/usecases/watchlist/get_watchlist_status.dart';
-import 'package:ditonton/domain/usecases/watchlist/remove_watchlist.dart';
-import 'package:ditonton/domain/usecases/watchlist/save_watchlist.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie/domain/entities/movie.dart';
+import 'package:movie/domain/usecases/get_movie_detail.dart';
+import 'package:movie/domain/usecases/get_movie_recommendations.dart';
 
 import '../../domain/entities/movie_detail.dart';
 

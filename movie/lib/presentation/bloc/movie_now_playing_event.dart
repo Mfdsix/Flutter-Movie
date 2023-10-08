@@ -1,4 +1,4 @@
-part of '../movie_now_playing_bloc.dart';
+part of 'movie_now_playing_bloc.dart';
 
 abstract class MovieNowPlayingEvent extends Equatable {
   const MovieNowPlayingEvent();
