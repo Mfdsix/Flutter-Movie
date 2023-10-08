@@ -1,5 +1,6 @@
 import 'package:core/common/domain/entities/genre.dart';
 import 'package:equatable/equatable.dart';
+import 'package:watchlist/data/models/watchlist_table.dart';
 
 class TvDetail extends Equatable {
   bool adult;
@@ -57,6 +58,8 @@ class TvDetail extends Equatable {
     required this.voteAverage,
     required this.voteCount,
   });
+
+  WatchlistTable toWatchlist() => WatchlistTable(id: id, title: name, posterPath: posterPath, overview: overview, type: "tv");
 
   @override
   List<Object?> get props => [

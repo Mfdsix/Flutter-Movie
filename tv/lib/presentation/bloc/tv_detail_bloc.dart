@@ -4,6 +4,9 @@ import 'package:tv/domain/entities/tv.dart';
 import 'package:tv/domain/entities/tv_detail.dart';
 import 'package:tv/domain/usecases/get_recommendation_tvs.dart';
 import 'package:tv/domain/usecases/get_tv_detail.dart';
+import 'package:watchlist/domain/usecases/get_watchlist_status.dart';
+import 'package:watchlist/domain/usecases/remove_watchlist.dart';
+import 'package:watchlist/domain/usecases/save_watchlist.dart';
 
 part 'tv_detail_event.dart';
 part 'tv_detail_state.dart';
@@ -11,9 +14,9 @@ part 'tv_detail_state.dart';
 class TvDetailBloc extends Bloc<TvDetailEvent, TvDetailState>{
   final GetTvDetail _getTvDetail;
   final GetRecommendationTvs _getMovieRecommendations;
-  final GetTvWatchlistStatus _getWatchListStatus;
-  final SaveTvToWatchlist _saveWatchlist;
-  final RemoveTvFromWatchlist _removeWatchlist;
+  final GetWatchlistStatus _getWatchListStatus;
+  final SaveWatchlist _saveWatchlist;
+  final RemoveWatchlist _removeWatchlist;
 
   TvDetailBloc(this._getTvDetail, this._getMovieRecommendations, this._getWatchListStatus, this._saveWatchlist, this._removeWatchlist) : super(TvDetailEmpty()) {
     on<OnFetchTvDetail>((event, emit) async {
@@ -45,7 +48,7 @@ class TvDetailBloc extends Bloc<TvDetailEvent, TvDetailState>{
     on<OnAddWatchlist>((event, emit) async {
       final tv = event.tvDetail;
 
-      final result = await _saveWatchlist.execute(tv);
+      final result = await _saveWatchlist.execute(tv.toWatchlist());
 
       result.fold(
           (failure) {
@@ -62,7 +65,7 @@ class TvDetailBloc extends Bloc<TvDetailEvent, TvDetailState>{
     on<OnRemoveWatchlist>((event, emit) async {
       final tv = event.tvDetail;
 
-      final result = await _removeWatchlist.execute(tv);
+      final result = await _removeWatchlist.execute(tv.toWatchlist());
 
       result.fold(
               (failure) {
