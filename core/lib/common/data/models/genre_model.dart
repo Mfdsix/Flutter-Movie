@@ -1,4 +1,4 @@
-import '../../../movie/lib/domain/entities/genre.dart';
+import 'package:core/common/domain/entities/genre.dart';
 import 'package:equatable/equatable.dart';
 
 class GenreModel extends Equatable {
