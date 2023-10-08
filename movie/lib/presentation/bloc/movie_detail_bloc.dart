@@ -7,7 +7,7 @@ import 'package:ditonton/domain/usecases/watchlist/save_watchlist.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../domain/entities/movie_detail.dart';
+import '../../domain/entities/movie_detail.dart';
 
 part 'movie_detail_event.dart';
 part 'movie_detail_state.dart';

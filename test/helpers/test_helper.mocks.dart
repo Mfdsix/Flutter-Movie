@@ -12,7 +12,7 @@ import 'package:ditonton/common/failure.dart' as _i8;
 import 'package:ditonton/data/datasources/helpers/database_helper.dart' as _i20;
 import 'package:ditonton/data/datasources/local/movie_local_data_source.dart'
     as _i18;
-import 'package:ditonton/data/datasources/remote/movie_remote_data_source.dart'
+import '../../movie/lib/data/datasources/remote/movie_remote_data_source.dart'
     as _i14;
 import 'package:ditonton/data/datasources/remote/tv_remote_data_source.dart'
     as _i16;
@@ -25,7 +25,7 @@ import 'package:ditonton/domain/entities/movie.dart' as _i9;
 import 'package:ditonton/domain/entities/movie_detail.dart' as _i10;
 import 'package:ditonton/domain/entities/tv.dart' as _i12;
 import 'package:ditonton/domain/entities/tv_detail.dart' as _i13;
-import 'package:ditonton/domain/repositories/movie_repository.dart' as _i6;
+import '../../movie/lib/domain/repositories/movie_repository.dart' as _i6;
 import 'package:ditonton/domain/repositories/tv_repository.dart' as _i11;
 import 'package:http/http.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;

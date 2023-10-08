@@ -1,10 +1,10 @@
 import 'package:ditonton/data/datasources/helpers/database_helper.dart';
 import 'package:ditonton/data/datasources/local/movie_local_data_source.dart';
-import 'package:ditonton/data/datasources/remote/movie_remote_data_source.dart';
+import '../movie/lib/data/datasources/remote/movie_remote_data_source.dart';
 import 'package:ditonton/data/datasources/remote/tv_remote_data_source.dart';
 import 'package:ditonton/data/repositories/movie_repository_impl.dart';
 import 'package:ditonton/data/repositories/tv_repository_impl.dart';
-import 'package:ditonton/domain/repositories/movie_repository.dart';
+import '../movie/lib/domain/repositories/movie_repository.dart';
 import 'package:ditonton/domain/repositories/tv_repository.dart';
 import 'package:ditonton/domain/usecases/movie/get_movie_detail.dart';
 import 'package:ditonton/domain/usecases/movie/get_movie_recommendations.dart';

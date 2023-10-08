@@ -1,4 +1,4 @@
-import 'package:ditonton/domain/repositories/movie_repository.dart';
+import '../../../../movie/lib/domain/repositories/movie_repository.dart';
 import 'package:ditonton/domain/repositories/tv_repository.dart';
 
 abstract class GetWatchlistStatus {

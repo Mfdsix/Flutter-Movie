@@ -5,7 +5,7 @@ import 'package:ditonton/presentation/bloc/tv/tv_on_airing_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv/tv_popular_bloc.dart';
 import 'package:ditonton/presentation/bloc/tv/tv_top_rated_bloc.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
-import 'package:ditonton/presentation/pages/movie/home_movie_page.dart';
+import '../../../../movie/lib/presentation/pages/home_movie_page.dart';
 import 'package:ditonton/presentation/pages/tv/on_airing_tv_page.dart';
 import 'package:ditonton/presentation/pages/tv/popular_tv_page.dart';
 import 'package:ditonton/presentation/pages/tv/search_tv_page.dart';

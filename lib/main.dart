@@ -14,7 +14,7 @@ import 'package:ditonton/presentation/bloc/watchlist/watchlist_movie_bloc.dart';
 import 'package:ditonton/presentation/bloc/watchlist/watchlist_tv_bloc.dart';
 import 'package:ditonton/presentation/pages/about_page.dart';
 import 'package:ditonton/presentation/pages/movie/movie_detail_page.dart';
-import 'package:ditonton/presentation/pages/movie/home_movie_page.dart';
+import '../movie/lib/presentation/pages/home_movie_page.dart';
 import 'package:ditonton/presentation/pages/movie/popular_movies_page.dart';
 import 'package:ditonton/presentation/pages/movie/search_movie_page.dart';
 import 'package:ditonton/presentation/pages/movie/top_rated_movies_page.dart';
