@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/domain/usecases/watchlist/get_watchlist_movies.dart';
+import 'package:ditonton/domain/usecases/watchlist/get_watchlist.dart';
 import 'package:ditonton/presentation/bloc/watchlist/watchlist_tv_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';

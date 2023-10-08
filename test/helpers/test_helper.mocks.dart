@@ -10,7 +10,7 @@ import 'dart:typed_data' as _i23;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:ditonton/common/failure.dart' as _i8;
 import 'package:ditonton/data/datasources/helpers/database_helper.dart' as _i20;
-import 'package:ditonton/data/datasources/local/movie_local_data_source.dart'
+import 'package:ditonton/data/datasources/local/watchlist_local_data_source.dart'
     as _i18;
 import '../../movie/lib/data/datasources/remote/movie_remote_data_source.dart'
     as _i14;
@@ -18,7 +18,7 @@ import 'package:ditonton/data/datasources/remote/tv_remote_data_source.dart'
     as _i16;
 import 'package:ditonton/data/models/movie/movie_detail_model.dart' as _i3;
 import 'package:ditonton/data/models/movie/movie_model.dart' as _i15;
-import 'package:ditonton/data/models/movie_table.dart' as _i19;
+import 'package:ditonton/data/models/watchlist_table.dart' as _i19;
 import 'package:ditonton/data/models/tv/tv_detail_model.dart' as _i4;
 import 'package:ditonton/data/models/tv/tv_model.dart' as _i17;
 import 'package:ditonton/domain/entities/movie.dart' as _i9;
