@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:http/http.dart';
 import 'package:http/io_client.dart';
 
 import 'package:flutter/services.dart';
@@ -13,7 +14,7 @@ Future<SecurityContext> get globalContext async {
   return securityContext;
 }
 
-Future<IOClient> get client async {
+Future<Client> get client async {
   HttpClient client = HttpClient(context: await globalContext);
   client.badCertificateCallback = (X509Certificate cert, String host, int port) => false;
   IOClient ioClient = IOClient(client);
