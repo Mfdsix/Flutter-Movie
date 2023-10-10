@@ -61,7 +61,6 @@ void main() {
     final watchlistButtonIcon = find.byIcon(Icons.add);
 
     await tester.pumpWidget(_makeTestableWidget(const MovieDetailPage(id: 1)));
-    await tester.pumpAndSettle();
 
     expect(watchlistButtonIcon, findsOneWidget);
   });
@@ -78,7 +77,6 @@ void main() {
 
     final watchlistButtonIcon = find.byIcon(Icons.check);
     await tester.pumpWidget(_makeTestableWidget(const MovieDetailPage(id: 1)));
-    await tester.pumpAndSettle();
 
     expect(watchlistButtonIcon, findsOneWidget);
   });
@@ -107,8 +105,8 @@ void main() {
   });
 
   testWidgets(
-      'Watchlist button should display AlertDialog when add to watchlist failed',
-      (WidgetTester tester) async {
+      'Watchlist button should display Snackbar when removed from watchlist',
+          (WidgetTester tester) async {
         when(() => mockDetailNotifier.state).thenReturn(
           MovieDetailHasData(testMovieDetail, testMovieList),
         );
@@ -116,16 +114,16 @@ void main() {
             const WatchlistStatusFetched(true)
         );
 
-    final watchlistButton = find.byType(ElevatedButton);
+        final watchlistButton = find.byType(ElevatedButton);
 
-    await tester.pumpWidget(_makeTestableWidget(const MovieDetailPage(id: 1)));
+        await tester.pumpWidget(_makeTestableWidget(const MovieDetailPage(id: 1)));
 
-    expect(find.byIcon(Icons.add), findsOneWidget);
+        expect(find.byIcon(Icons.check), findsOneWidget);
 
-    await tester.tap(watchlistButton);
-    await tester.pump();
+        await tester.tap(watchlistButton);
+        await tester.pump();
 
-    expect(find.byType(AlertDialog), findsOneWidget);
-    expect(find.text('Failed'), findsOneWidget);
-  });
+        expect(find.byType(SnackBar), findsOneWidget);
+        expect(find.text('Removed from Watchlist'), findsOneWidget);
+      });
 }

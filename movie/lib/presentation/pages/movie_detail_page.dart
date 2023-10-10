@@ -108,25 +108,17 @@ class DetailContent extends StatelessWidget {
                                       if (!state.watchlistStatus) {
                                         context.read<WatchlistToggleBloc>()
                                             .add(OnAddWatchlist(movie.toWatchlist()));
-                                      } else {
-                                        context.read<WatchlistToggleBloc>()
-                                            .add(OnAddWatchlist(movie.toWatchlist()));
-                                      }
-
-                                      if (state.watchlistStatus) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                             const SnackBar(content: Text(
-                                                "Movie removed from Watchlist")));
+                                                "Added to Watchlist")));
                                       } else {
-                                        showDialog(
-                                            context: context,
-                                            builder: (context) {
-                                              return const AlertDialog(
-                                                content: Text(
-                                                    "Movie added to Watchlist"),
-                                              );
-                                            });
+                                        context.read<WatchlistToggleBloc>()
+                                            .add(OnRemoveWatchlist(movie.toWatchlist()));
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                            const SnackBar(content: Text(
+                                                "Removed from Watchlist")));
                                       }
                                     },
                                     child: Row(
