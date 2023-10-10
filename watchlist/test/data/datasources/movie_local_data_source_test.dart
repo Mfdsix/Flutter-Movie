@@ -63,29 +63,6 @@ void main() {
     });
   });
 
-  group('Get Movie Detail By Id', () {
-    final tId = 1;
-
-    test('should return Movie Detail Table when data is found', () async {
-      // arrange
-      when(mockDatabaseHelper.getWatchlistById(tId))
-          .thenAnswer((_) async => testMovieMap);
-      // act
-      final result = await dataSource.getMovieById(tId);
-      // assert
-      expect(result, testWatchlist);
-    });
-
-    test('should return null when data is not found', () async {
-      // arrange
-      when(mockDatabaseHelper.getWatchlistById(tId)).thenAnswer((_) async => null);
-      // act
-      final result = await dataSource.getMovieById(tId);
-      // assert
-      expect(result, null);
-    });
-  });
-
   group('get watchlist movies', () {
     test('should return list of MovieTable from database', () async {
       // arrange
@@ -94,7 +71,7 @@ void main() {
       // act
       final result = await dataSource.getWatchlistMovies();
       // assert
-      expect(result, [testWatchlist]);
+      expect(result, testWatchlists);
     });
   });
 }

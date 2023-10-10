@@ -35,7 +35,7 @@ void main(){
         act: (bloc) => bloc.add(const OnFetchWatchlistTv()),
         wait: const Duration(microseconds: 100),
         expect: () =>
-        [WatchlistTvLoading(), WatchlistTvHasData(tvs)],
+        [WatchlistTvLoading(), WatchlistTvHasData(testWatchlists.map((e) => e.toTvEntity()).toList())],
         verify: (bloc) {
           verify(mockGetWatchlistTvs.execute('tv'));
         });

@@ -35,7 +35,7 @@ void main(){
         act: (bloc) => bloc.add(const OnFetchWatchlistMovie()),
         wait: const Duration(microseconds: 100),
         expect: () =>
-        [WatchlistMovieLoading(), WatchlistMovieHasData(tMovieList)],
+        [WatchlistMovieLoading(), WatchlistMovieHasData(testWatchlists.map((e) => e.toMovieEntity()).toList())],
         verify: (bloc) {
           verify(mockGetWatchlistMovies.execute('movie'));
         });

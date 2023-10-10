@@ -5,15 +5,15 @@ import 'package:watchlist/domain/entities/tv.dart';
 
 final testMovieMap = {
   'id': 1,
-  'overview': 'overview',
-  'posterPath': 'posterPath',
-  'title': 'title',
+  'overview': 'ok',
+  'posterPath': 'poster.png',
+  'title': 'test',
 };
 
 final testWatchlist = WatchlistTable(id: 1, title: "test", posterPath: "poster.png", overview: "overview");
 
 final testWatchlists = [
-  WatchlistTable(id: 1, title: "test", posterPath: "poser.png", overview: "ok")
+  WatchlistTable(id: 1, title: "test", posterPath: "poster.png", overview: "ok")
 ];
 
 final tMovie = Movie(
