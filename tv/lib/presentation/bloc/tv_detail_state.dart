@@ -21,33 +21,10 @@ class TvDetailError extends TvDetailState {
 
 class TvDetailHasData extends TvDetailState {
   final TvDetail result;
+  final List<Tv> recommendations;
 
-  const TvDetailHasData(this.result);
+  const TvDetailHasData(this.result, this.recommendations);
 
   @override
   List<Object> get props => [result];
-}
-
-class TvRecommendationHasData extends TvDetailState {
-  final List<Tv> recommendations;
-
-  const TvRecommendationHasData(this.recommendations);
-
-  @override
-  List<Object> get props => [recommendations];
-}
-
-class AddWatchlistSuccess extends TvDetailState {}
-class AddWatchlistFailed extends TvDetailState {}
-
-class RemoveWatchlistSuccess extends TvDetailState {}
-class RemoveWatchlistFailed extends TvDetailState {}
-
-class WatchlistStatusFetched extends TvDetailState {
-  final bool watchlistStatus;
-
-  const WatchlistStatusFetched(this.watchlistStatus);
-
-  @override
-  List<Object> get props => [watchlistStatus];
 }

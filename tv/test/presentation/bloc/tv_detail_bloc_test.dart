@@ -26,18 +26,12 @@ void main() {
   late TvDetailBloc tvDetailBloc;
   late MockGetTvDetail mockGetMovieDetail;
   late MockGetRecommendationTvs mockGetMovieRecommendations;
-  late MockGetWatchlistStatus mockGetWatchlistStatus;
-  late MockSaveWatchlist mockSaveWatchlist;
-  late MockRemoveWatchlist mockRemoveWatchlist;
 
   setUp(() {
     mockGetMovieDetail = MockGetTvDetail();
     mockGetMovieRecommendations = MockGetRecommendationTvs();
-    mockGetWatchlistStatus = MockGetWatchlistStatus();
-    mockSaveWatchlist = MockSaveWatchlist();
-    mockRemoveWatchlist = MockRemoveWatchlist();
-    tvDetailBloc = TvDetailBloc(mockGetMovieDetail, mockGetMovieRecommendations,
-        mockGetWatchlistStatus, mockSaveWatchlist, mockRemoveWatchlist);
+    tvDetailBloc =
+        TvDetailBloc(mockGetMovieDetail, mockGetMovieRecommendations);
   });
 
   const tId = 1;
@@ -75,11 +69,11 @@ void main() {
         },
         act: (bloc) => bloc.add(const OnFetchTvDetail(tId)),
         wait: const Duration(microseconds: 100),
-        expect: () => [
-              TvDetailLoading(),
-              TvDetailHasData(testTvDetail),
-              TvRecommendationHasData(tvs)
-            ],
+        expect: () =>
+        [
+          TvDetailLoading(),
+          TvDetailHasData(testTvDetail, tvs)
+        ],
         verify: (bloc) {
           verify(mockGetMovieDetail.execute(tId));
         });
@@ -97,10 +91,10 @@ void main() {
         act: (bloc) => bloc.add(const OnFetchTvDetail(tId)),
         wait: const Duration(microseconds: 100),
         expect: () =>
-            [TvDetailLoading(), const TvDetailError("server error")],
+        [TvDetailLoading(), const TvDetailError("server error")],
         verify: (bloc) {
           verify(mockGetMovieDetail.execute(tId));
-    });
+        });
 
     blocTest<TvDetailBloc, TvDetailState>(
         'Should emit [Loading, Error] when failed',
@@ -114,106 +108,13 @@ void main() {
         },
         act: (bloc) => bloc.add(const OnFetchTvDetail(tId)),
         wait: const Duration(microseconds: 100),
-        expect: () => [
-              TvDetailLoading(),
-              TvDetailHasData(testTvDetail),
-              const TvDetailError("server error")
-            ],
+        expect: () =>
+        [
+          TvDetailLoading(),
+          const TvDetailError("server error")
+        ],
         verify: (bloc) {
           verify(mockGetMovieDetail.execute(tId));
-        });
-  });
-
-  group('Add Tv To Watchlist', () {
-    blocTest<TvDetailBloc, TvDetailState>(
-        'Should emit [Successs] when data is gotten successfully',
-        build: () {
-          when(mockSaveWatchlist.execute(testTvDetail.toWatchlist()))
-              .thenAnswer((_) async => const Right("success"));
-          when(mockGetWatchlistStatus.execute(testTvDetail.id))
-              .thenAnswer((_) async => true);
-
-          return tvDetailBloc;
-        },
-        act: (bloc) => bloc.add(OnAddWatchlist(testTvDetail)),
-        wait: const Duration(microseconds: 100),
-        expect: () =>
-            [AddWatchlistSuccess(), const WatchlistStatusFetched(true)],
-        verify: (bloc) {
-          verify(mockSaveWatchlist.execute(testTvDetail.toWatchlist()));
-        });
-
-    blocTest<TvDetailBloc, TvDetailState>(
-        'Should emit [Error] when failed',
-        build: () {
-          when(mockSaveWatchlist.execute(testTvDetail.toWatchlist()))
-              .thenAnswer((_) async => Left(ServerFailure("server error")));
-          when(mockGetWatchlistStatus.execute(testTvDetail.id))
-              .thenAnswer((_) async => false);
-
-          return tvDetailBloc;
-        },
-        act: (bloc) => bloc.add(OnAddWatchlist(testTvDetail)),
-        wait: const Duration(microseconds: 100),
-        expect: () =>
-            [AddWatchlistFailed(), const WatchlistStatusFetched(false)],
-        verify: (bloc) {
-          verify(mockSaveWatchlist.execute(testTvDetail.toWatchlist()));
-        });
-  });
-
-  group('Remove Tv To Watchlist', () {
-    blocTest<TvDetailBloc, TvDetailState>(
-        'Should emit [Successs] when data is gotten successfully',
-        build: () {
-          when(mockRemoveWatchlist.execute(testTvDetail.toWatchlist()))
-              .thenAnswer((_) async => const Right("success"));
-          when(mockGetWatchlistStatus.execute(testTvDetail.id))
-              .thenAnswer((_) async => false);
-
-          return tvDetailBloc;
-        },
-        act: (bloc) => bloc.add(OnRemoveWatchlist(testTvDetail)),
-        wait: const Duration(microseconds: 100),
-        expect: () =>
-            [RemoveWatchlistSuccess(), const WatchlistStatusFetched(false)],
-        verify: (bloc) {
-          verify(mockRemoveWatchlist.execute(testTvDetail.toWatchlist()));
-        });
-
-    blocTest<TvDetailBloc, TvDetailState>(
-        'Should emit [Error] when failed',
-        build: () {
-          when(mockRemoveWatchlist.execute(testTvDetail.toWatchlist()))
-              .thenAnswer((_) async => Left(ServerFailure("server error")));
-          when(mockGetWatchlistStatus.execute(testTvDetail.id))
-              .thenAnswer((_) async => false);
-
-          return tvDetailBloc;
-        },
-        act: (bloc) => bloc.add(OnRemoveWatchlist(testTvDetail)),
-        wait: const Duration(microseconds: 100),
-        expect: () =>
-            [RemoveWatchlistFailed(), const WatchlistStatusFetched(false)],
-        verify: (bloc) {
-          verify(mockRemoveWatchlist.execute(testTvDetail.toWatchlist()));
-        });
-  });
-
-  group('Get Tv Watchlist Status', () {
-    blocTest<TvDetailBloc, TvDetailState>(
-        'Should emit [Successs] when data is gotten successfully',
-        build: () {
-          when(mockGetWatchlistStatus.execute(testTvDetail.id))
-              .thenAnswer((_) async => true);
-
-          return tvDetailBloc;
-        },
-        act: (bloc) => bloc.add(OnLoadWatchlistStatus(testTvDetail.id)),
-        wait: const Duration(microseconds: 100),
-        expect: () => [const WatchlistStatusFetched(true)],
-        verify: (bloc) {
-          verify(mockGetWatchlistStatus.execute(testTvDetail.id));
         });
   });
 }

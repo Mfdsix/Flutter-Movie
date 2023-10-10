@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:tv/domain/entities/tv_detail.dart';
 import 'package:tv/presentation/bloc/tv_detail_bloc.dart';
+import 'package:watchlist/presentation/bloc/watchlist_toggle_bloc.dart';
 
 class TvDetailPage extends StatefulWidget {
   final int id;
@@ -22,7 +23,7 @@ class _TvDetailPageState extends State<TvDetailPage> {
     super.initState();
     Future.microtask(() {
       context.read<TvDetailBloc>().add(OnFetchTvDetail(widget.id));
-      context.read<TvDetailBloc>().add(OnLoadWatchlistStatus(widget.id));
+      context.read<WatchlistToggleBloc>().add(OnGetWatchlistStatus(widget.id));
     });
   }
 
@@ -96,28 +97,19 @@ class DetailContent extends StatelessWidget {
                               tv.name,
                               style: kHeading5,
                             ),
-                            BlocBuilder<TvDetailBloc, TvDetailState>(
+                            BlocBuilder<WatchlistToggleBloc, WatchlistToggleState>(
                                 builder: (context, state) {
                                   if(state is WatchlistStatusFetched){
                                     return ElevatedButton(
                                       onPressed: () async {
                                         if (!state.watchlistStatus) {
-                                          context.read<TvDetailBloc>().add(OnAddWatchlist(tv));
-                                        } else {
-                                          context.read<TvDetailBloc>().add(OnRemoveWatchlist(tv));
-                                        }
-
-                                        if (!state.watchlistStatus) {
+                                          context.read<WatchlistToggleBloc>().add(OnAddWatchlist(tv.toWatchlist()));
                                           ScaffoldMessenger.of(context).showSnackBar(
-                                              const SnackBar(content: Text("Added To Watchlist")));
+                                              const SnackBar(content: Text("Added to Watchlist")));
                                         } else {
-                                          showDialog(
-                                              context: context,
-                                              builder: (context) {
-                                                return const AlertDialog(
-                                                  content: Text("Removed from Watchlist"),
-                                                );
-                                              });
+                                          context.read<WatchlistToggleBloc>().add(OnRemoveWatchlist(tv.toWatchlist()));
+                                          ScaffoldMessenger.of(context).showSnackBar(
+                                              const SnackBar(content: Text("Removed from Watchlist")));
                                         }
                                       },
                                       child: Row(
@@ -179,7 +171,7 @@ class DetailContent extends StatelessWidget {
                                   );
                                 } else if (state is TvDetailEmpty) {
                                   return const Text("Failed");
-                                } else if (state is TvRecommendationHasData) {
+                                } else if (state is TvDetailHasData) {
                                   final recommendations = state.recommendations;
 
                                   return SizedBox(
