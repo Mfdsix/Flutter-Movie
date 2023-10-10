@@ -92,7 +92,7 @@ void init() {
   );
   locator.registerFactory(
         () => TvDetailBloc(
-          locator(), locator(), locator(), locator(), locator()
+          locator(), locator()
     ),
   );
   locator.registerFactory(
