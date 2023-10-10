@@ -1,6 +1,5 @@
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
-import 'package:http/io_client.dart';
 import 'package:movie/data/datasources/remote/movie_remote_data_source.dart';
 import 'package:movie/data/repositories/movie_repository_impl.dart';
 import 'package:movie/domain/repositories/movie_repository.dart';
@@ -31,11 +30,14 @@ import 'package:tv/presentation/bloc/tv_search_bloc.dart';
 import 'package:tv/presentation/bloc/tv_top_rated_bloc.dart';
 import 'package:watchlist/data/datasources/helpers/database_helper.dart';
 import 'package:watchlist/data/datasources/local/watchlist_local_data_source.dart';
+import 'package:watchlist/data/repositories/watchlist_repository_impl.dart';
+import 'package:watchlist/domain/repositories/watchlist_repository.dart';
 import 'package:watchlist/domain/usecases/get_watchlist.dart';
 import 'package:watchlist/domain/usecases/get_watchlist_status.dart';
 import 'package:watchlist/domain/usecases/remove_watchlist.dart';
 import 'package:watchlist/domain/usecases/save_watchlist.dart';
 import 'package:watchlist/presentation/bloc/watchlist_movie_bloc.dart';
+import 'package:watchlist/presentation/bloc/watchlist_toggle_bloc.dart';
 import 'package:watchlist/presentation/bloc/watchlist_tv_bloc.dart';
 
 final locator = GetIt.instance;
@@ -59,7 +61,7 @@ void init() {
   );
   locator.registerFactory(
     () => MovieDetailBloc(
-      locator(), locator(), locator(), locator(), locator()
+      locator(), locator()
     ),
   );
   locator.registerFactory(
@@ -104,6 +106,12 @@ void init() {
     ),
   );
 
+  locator.registerFactory(
+        () => WatchlistToggleBloc(
+      locator(), locator(), locator()
+    ),
+  );
+
   // use case
   locator.registerLazySingleton(() => GetNowPlayingMovies(locator()));
   locator.registerLazySingleton(() => GetPopularMovies(locator()));
@@ -135,6 +143,11 @@ void init() {
       remoteDataSource: locator()
     ),
   );
+  locator.registerLazySingleton<WatchlistRepository>(
+        () => WatchlistRepositoryImpl(
+        localDataSource: locator()
+    ),
+  );
 
   // data sources
   locator.registerLazySingleton<MovieRemoteDataSource>(
@@ -149,5 +162,4 @@ void init() {
 
   // external
   locator.registerLazySingleton(() => http.Client());
-  locator.registerLazySingleton(() => IOClient());
 }

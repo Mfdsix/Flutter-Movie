@@ -3,9 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie/domain/entities/movie.dart';
 import 'package:movie/domain/usecases/get_movie_detail.dart';
 import 'package:movie/domain/usecases/get_movie_recommendations.dart';
-import 'package:watchlist/domain/usecases/get_watchlist_status.dart';
-import 'package:watchlist/domain/usecases/remove_watchlist.dart';
-import 'package:watchlist/domain/usecases/save_watchlist.dart';
 
 import '../../domain/entities/movie_detail.dart';
 
@@ -15,11 +12,8 @@ part 'movie_detail_state.dart';
 class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState>{
   final GetMovieDetail _getMovieDetail;
   final GetMovieRecommendations _getMovieRecommendations;
-  final GetWatchlistStatus _getWatchListStatus;
-  final SaveWatchlist _saveWatchlist;
-  final RemoveWatchlist _removeWatchlist;
 
-  MovieDetailBloc(this._getMovieDetail, this._getMovieRecommendations, this._getWatchListStatus, this._saveWatchlist, this._removeWatchlist) : super(MovieDetailEmpty()) {
+  MovieDetailBloc(this._getMovieDetail, this._getMovieRecommendations) : super(MovieDetailEmpty()) {
     on<OnFetchMovieDetail>((event, emit) async {
       final movieId = event.movieId;
 
@@ -32,59 +26,16 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState>{
           emit(MovieDetailError(failure.message));
         },
         (movie) {
-          emit(MovieDetailHasData(movie));
-
           recommendations.fold(
               (failure) {
                 emit(MovieDetailError(failure.message));
               },
               (recommendations) {
-                emit(MovieRecommendationHasData(recommendations));
+                emit(MovieDetailHasData(movie, recommendations));
               }
           );
         }
       );
-    });
-
-    on<OnAddWatchlist>((event, emit) async {
-      final movie = event.movieDetail;
-
-      final result = await _saveWatchlist.execute(movie.toWatchlist());
-
-      result.fold(
-          (failure) {
-            emit(AddWatchlistFailed());
-          },
-          (successMessage) {
-            emit(AddWatchlistSuccess());
-          }
-      );
-
-      add(OnLoadWatchlistStatus(movie.id));
-    });
-
-    on<OnRemoveWatchlist>((event, emit) async {
-      final movie = event.movieDetail;
-
-      final result = await _removeWatchlist.execute(movie.toWatchlist());
-
-      result.fold(
-              (failure) {
-            emit(RemoveWatchlistFailed());
-          },
-              (successMessage) {
-            emit(RemoveWatchlistSuccess());
-          }
-      );
-
-      add(OnLoadWatchlistStatus(movie.id));
-    });
-
-    on<OnLoadWatchlistStatus>((event, emit) async {
-      final movieId = event.movieId;
-
-      final result = await _getWatchListStatus.execute(movieId);
-      emit(WatchlistStatusFetched(result));
     });
   }
 }

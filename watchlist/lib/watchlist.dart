@@ -8,6 +8,7 @@ export 'domain/usecases/remove_watchlist.dart';
 
 export 'presentation/bloc/watchlist_movie_bloc.dart';
 export 'presentation/bloc/watchlist_tv_bloc.dart';
+export 'presentation/bloc/watchlist_toggle_bloc.dart';
 
 export 'presentation/pages/watchlist_movies_page.dart';
 export 'presentation/pages/watchlist_tv_page.dart';

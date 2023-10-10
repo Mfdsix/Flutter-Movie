@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:movie/domain/entities/movie_detail.dart';
 import 'package:movie/presentation/bloc/movie_detail_bloc.dart';
+import 'package:watchlist/presentation/bloc/watchlist_toggle_bloc.dart';
 
 class MovieDetailPage extends StatefulWidget {
   final int id;
@@ -23,8 +24,8 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     Future.microtask(() {
       context.read<MovieDetailBloc>()
           .add(OnFetchMovieDetail(widget.id));
-      context.read<MovieDetailBloc>()
-          .add(OnLoadWatchlistStatus(widget.id));
+      context.read<WatchlistToggleBloc>()
+          .add(OnGetWatchlistStatus(widget.id));
     });
   }
 
@@ -33,6 +34,7 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
     return Scaffold(
       body: BlocBuilder<MovieDetailBloc, MovieDetailState>(
         builder: (context, state) {
+          print(state);
           if (state is MovieDetailLoading) {
             return const Center(
               child: CircularProgressIndicator(),
@@ -98,17 +100,17 @@ class DetailContent extends StatelessWidget {
                               movie.title,
                               style: kHeading5,
                             ),
-                            BlocBuilder<MovieDetailBloc, MovieDetailState>(
+                            BlocBuilder<WatchlistToggleBloc, WatchlistToggleState>(
                               builder: (context, state) {
                                 if(state is WatchlistStatusFetched) {
                                   return ElevatedButton(
                                     onPressed: () async {
                                       if (!state.watchlistStatus) {
-                                        context.read<MovieDetailBloc>()
-                                            .add(OnAddWatchlist(movie));
+                                        context.read<WatchlistToggleBloc>()
+                                            .add(OnAddWatchlist(movie.toWatchlist()));
                                       } else {
-                                        context.read<MovieDetailBloc>()
-                                            .add(OnRemoveWatchlist(movie));
+                                        context.read<WatchlistToggleBloc>()
+                                            .add(OnAddWatchlist(movie.toWatchlist()));
                                       }
 
                                       if (state.watchlistStatus) {

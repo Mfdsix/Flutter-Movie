@@ -21,11 +21,12 @@ class MovieDetailError extends MovieDetailState {
 
 class MovieDetailHasData extends MovieDetailState {
   final MovieDetail result;
+  final List<Movie> recommendations;
 
-  const MovieDetailHasData(this.result);
+  const MovieDetailHasData(this.result, this.recommendations);
 
   @override
-  List<Object> get props => [result];
+  List<Object> get props => [result, recommendations];
 }
 
 class MovieRecommendationHasData extends MovieDetailState {
@@ -35,19 +36,4 @@ class MovieRecommendationHasData extends MovieDetailState {
 
   @override
   List<Object> get props => [recommendations];
-}
-
-class AddWatchlistSuccess extends MovieDetailState {}
-class AddWatchlistFailed extends MovieDetailState {}
-
-class RemoveWatchlistSuccess extends MovieDetailState {}
-class RemoveWatchlistFailed extends MovieDetailState {}
-
-class WatchlistStatusFetched extends MovieDetailState {
-  final bool watchlistStatus;
-
-  const WatchlistStatusFetched(this.watchlistStatus);
-
-  @override
-  List<Object> get props => [watchlistStatus];
 }

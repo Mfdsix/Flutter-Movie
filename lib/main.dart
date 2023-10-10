@@ -29,6 +29,7 @@ import 'package:tv/presentation/pages/search_tv_page.dart';
 import 'package:tv/presentation/pages/top_rated_tv_page.dart';
 import 'package:tv/presentation/pages/tv_detail_page.dart';
 import 'package:watchlist/presentation/bloc/watchlist_movie_bloc.dart';
+import 'package:watchlist/presentation/bloc/watchlist_toggle_bloc.dart';
 import 'package:watchlist/presentation/bloc/watchlist_tv_bloc.dart';
 import 'package:watchlist/presentation/pages/watchlist_movies_page.dart';
 import 'package:watchlist/presentation/pages/watchlist_tv_page.dart';
@@ -82,6 +83,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<WatchlistTvBloc>(
           create: (_) => di.locator<WatchlistTvBloc>(),
+        ),
+        BlocProvider<WatchlistToggleBloc>(
+          create: (_) => di.locator<WatchlistToggleBloc>(),
         ),
       ],
       child: MaterialApp(

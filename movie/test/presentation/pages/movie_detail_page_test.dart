@@ -5,24 +5,43 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:movie/presentation/bloc/movie_detail_bloc.dart';
 import 'package:movie/presentation/pages/movie_detail_page.dart';
+import 'package:watchlist/presentation/bloc/watchlist_toggle_bloc.dart';
+
+import '../../dummy_data/dummy_objects.dart';
 
 class MockMovieDetailBloc extends MockBloc<MovieDetailEvent, MovieDetailState>
 implements MovieDetailBloc {}
 class MovieDetailStateFake extends Fake implements MovieDetailState {}
 class MovieDetailEventFake extends Fake implements MovieDetailEvent {}
 
+class MockWatchlistToggleBloc extends MockBloc<WatchlistToggleEvent, WatchlistToggleState>
+    implements WatchlistToggleBloc {}
+class WatchlistToggleStateFake extends Fake implements WatchlistToggleState {}
+class WatchlistToggleEventFake extends Fake implements WatchlistToggleEvent {}
+
 void main() {
-  late MockMovieDetailBloc mockNotifier;
+  late MockMovieDetailBloc mockDetailNotifier;
+  late MockWatchlistToggleBloc mockWatchlistNotifier;
 
   setUpAll(() {
-    mockNotifier = MockMovieDetailBloc();
+    mockDetailNotifier = MockMovieDetailBloc();
     registerFallbackValue(MovieDetailStateFake());
     registerFallbackValue(MovieDetailEventFake());
+
+    mockWatchlistNotifier = MockWatchlistToggleBloc();
+    registerFallbackValue(WatchlistToggleStateFake());
+    registerFallbackValue(WatchlistToggleEventFake());
   });
 
   Widget _makeTestableWidget(Widget body) {
-    return BlocProvider<MovieDetailBloc>(
-      create: (_) => mockNotifier,
+    return MultiBlocProvider(
+        providers: [
+      BlocProvider<MovieDetailBloc>(
+        create: (_) => mockDetailNotifier,
+      ),
+      BlocProvider<WatchlistToggleBloc>(
+      create: (_) => mockWatchlistNotifier,
+      )],
       child: MaterialApp(
         home: body,
       ),
@@ -32,9 +51,13 @@ void main() {
   testWidgets(
       'Watchlist button should display add icon when movie not added to watchlist',
       (WidgetTester tester) async {
-    when(() => mockNotifier.state).thenReturn(
-        const WatchlistStatusFetched(false),
+    when(() => mockDetailNotifier.state).thenReturn(
+        MovieDetailHasData(testMovieDetail, testMovieList),
     );
+    when(() => mockWatchlistNotifier.state).thenReturn(
+      const WatchlistStatusFetched(false)
+    );
+
     final watchlistButtonIcon = find.byIcon(Icons.add);
 
     await tester.pumpWidget(_makeTestableWidget(const MovieDetailPage(id: 1)));
@@ -46,8 +69,11 @@ void main() {
   testWidgets(
       'Watchlist button should dispay check icon when movie is added to wathclist',
       (WidgetTester tester) async {
-        when(() => mockNotifier.state).thenReturn(
-          const WatchlistStatusFetched(true),
+        when(() => mockDetailNotifier.state).thenReturn(
+          MovieDetailHasData(testMovieDetail, testMovieList),
+        );
+        when(() => mockWatchlistNotifier.state).thenReturn(
+            const WatchlistStatusFetched(true)
         );
 
     final watchlistButtonIcon = find.byIcon(Icons.check);
@@ -60,8 +86,11 @@ void main() {
   testWidgets(
       'Watchlist button should display Snackbar when added to watchlist',
       (WidgetTester tester) async {
-        when(() => mockNotifier.state).thenReturn(
-          const WatchlistStatusFetched(false),
+        when(() => mockDetailNotifier.state).thenReturn(
+          MovieDetailHasData(testMovieDetail, testMovieList),
+        );
+        when(() => mockWatchlistNotifier.state).thenReturn(
+            const WatchlistStatusFetched(false)
         );
 
     final watchlistButton = find.byType(ElevatedButton);
@@ -80,8 +109,11 @@ void main() {
   testWidgets(
       'Watchlist button should display AlertDialog when add to watchlist failed',
       (WidgetTester tester) async {
-        when(() => mockNotifier.state).thenReturn(
-          const WatchlistStatusFetched(true),
+        when(() => mockDetailNotifier.state).thenReturn(
+          MovieDetailHasData(testMovieDetail, testMovieList),
+        );
+        when(() => mockWatchlistNotifier.state).thenReturn(
+            const WatchlistStatusFetched(true)
         );
 
     final watchlistButton = find.byType(ElevatedButton);

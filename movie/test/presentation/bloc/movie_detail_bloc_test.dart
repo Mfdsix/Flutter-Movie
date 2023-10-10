@@ -7,40 +7,25 @@ import 'package:mockito/mockito.dart';
 import 'package:movie/domain/usecases/get_movie_detail.dart';
 import 'package:movie/domain/usecases/get_movie_recommendations.dart';
 import 'package:movie/presentation/bloc/movie_detail_bloc.dart';
-import 'package:watchlist/domain/usecases/get_watchlist_status.dart';
-import 'package:watchlist/domain/usecases/remove_watchlist.dart';
-import 'package:watchlist/domain/usecases/save_watchlist.dart';
 
 import '../../dummy_data/dummy_objects.dart';
 import 'movie_detail_bloc_test.mocks.dart';
 
 @GenerateMocks([
   GetMovieDetail,
-  GetMovieRecommendations,
-  GetWatchlistStatus,
-  SaveWatchlist,
-  RemoveWatchlist,
+  GetMovieRecommendations
 ])
 void main() {
   late MovieDetailBloc movieDetailBloc;
   late MockGetMovieDetail mockGetMovieDetail;
   late MockGetMovieRecommendations mockGetMovieRecommendations;
-  late MockGetWatchlistStatus mockGetWatchlistStatus;
-  late MockSaveWatchlist mockSaveWatchlist;
-  late MockRemoveWatchlist mockRemoveWatchlist;
 
   setUp(() {
     mockGetMovieDetail = MockGetMovieDetail();
     mockGetMovieRecommendations = MockGetMovieRecommendations();
-    mockGetWatchlistStatus = MockGetWatchlistStatus();
-    mockSaveWatchlist = MockSaveWatchlist();
-    mockRemoveWatchlist = MockRemoveWatchlist();
     movieDetailBloc = MovieDetailBloc(
         mockGetMovieDetail,
-        mockGetMovieRecommendations,
-        mockGetWatchlistStatus,
-        mockSaveWatchlist,
-        mockRemoveWatchlist);
+        mockGetMovieRecommendations);
   });
 
   const tId = 1;
@@ -64,8 +49,7 @@ void main() {
         wait: const Duration(microseconds: 100),
         expect: () => [
               MovieDetailLoading(),
-              MovieDetailHasData(testMovieDetail),
-              MovieRecommendationHasData(tMovieList)
+              MovieDetailHasData(testMovieDetail, tMovieList)
             ],
         verify: (bloc) {
           verify(mockGetMovieDetail.execute(tId));
@@ -103,105 +87,10 @@ void main() {
         wait: const Duration(microseconds: 100),
         expect: () => [
               MovieDetailLoading(),
-              MovieDetailHasData(testMovieDetail),
               const MovieDetailError("server error")
             ],
         verify: (bloc) {
           verify(mockGetMovieDetail.execute(tId));
-        });
-  });
-
-  group('Add Movie To Watchlist', () {
-    blocTest<MovieDetailBloc, MovieDetailState>(
-        'Should emit [Successs] when data is gotten successfully',
-        build: () {
-          when(mockSaveWatchlist.execute(testMovieDetail.toWatchlist()))
-              .thenAnswer((_) async => const Right("success"));
-          when(mockGetWatchlistStatus.execute(testMovieDetail.id))
-              .thenAnswer((_) async => true);
-
-          return movieDetailBloc;
-        },
-        act: (bloc) => bloc.add(OnAddWatchlist(testMovieDetail)),
-        wait: const Duration(microseconds: 100),
-        expect: () =>
-            [AddWatchlistSuccess(), const WatchlistStatusFetched(true)],
-        verify: (bloc) {
-          verify(mockSaveWatchlist.execute(testMovieDetail.toWatchlist()));
-        });
-
-    blocTest<MovieDetailBloc, MovieDetailState>(
-        'Should emit [Error] when failed',
-        build: () {
-          when(mockSaveWatchlist.execute(testMovieDetail.toWatchlist()))
-              .thenAnswer((_) async => Left(ServerFailure("server error")));
-          when(mockGetWatchlistStatus.execute(testMovieDetail.id))
-              .thenAnswer((_) async => false);
-
-          return movieDetailBloc;
-        },
-        act: (bloc) => bloc.add(OnAddWatchlist(testMovieDetail)),
-        wait: const Duration(microseconds: 100),
-        expect: () =>
-            [AddWatchlistFailed(), const WatchlistStatusFetched(false)],
-        verify: (bloc) {
-          verify(mockSaveWatchlist.execute(testMovieDetail.toWatchlist()));
-        });
-  });
-
-  group('Remove Movie To Watchlist', () {
-    blocTest<MovieDetailBloc, MovieDetailState>(
-        'Should emit [Successs] when data is gotten successfully',
-        build: () {
-          when(mockRemoveWatchlist.execute(testMovieDetail.toWatchlist()))
-              .thenAnswer((_) async => const Right("success"));
-          when(mockGetWatchlistStatus.execute(testMovieDetail.id))
-              .thenAnswer((_) async => false);
-
-          return movieDetailBloc;
-        },
-        act: (bloc) => bloc.add(OnRemoveWatchlist(testMovieDetail)),
-        wait: const Duration(microseconds: 100),
-        expect: () =>
-            [RemoveWatchlistSuccess(), const WatchlistStatusFetched(false)],
-        verify: (bloc) {
-          verify(mockRemoveWatchlist.execute(testMovieDetail.toWatchlist()));
-        });
-
-    blocTest<MovieDetailBloc, MovieDetailState>(
-        'Should emit [Error] when failed',
-        build: () {
-          when(mockRemoveWatchlist.execute(testMovieDetail.toWatchlist()))
-              .thenAnswer((_) async => Left(ServerFailure("server error")));
-          when(mockGetWatchlistStatus.execute(testMovieDetail.id))
-              .thenAnswer((_) async => false);
-
-          return movieDetailBloc;
-        },
-        act: (bloc) => bloc.add(OnRemoveWatchlist(testMovieDetail)),
-        wait: const Duration(microseconds: 100),
-        expect: () =>
-            [RemoveWatchlistFailed(), const WatchlistStatusFetched(false)],
-        verify: (bloc) {
-          verify(mockRemoveWatchlist.execute(testMovieDetail.toWatchlist()));
-        });
-  });
-
-  group('Get Movie Watchlist Status', () {
-    blocTest<MovieDetailBloc, MovieDetailState>(
-        'Should emit [Successs] when data is gotten successfully',
-        build: () {
-          when(mockGetWatchlistStatus.execute(testMovieDetail.id))
-              .thenAnswer((_) async => true);
-
-          return movieDetailBloc;
-        },
-        act: (bloc) => bloc.add(OnLoadWatchlistStatus(testMovieDetail.id)),
-        wait: const Duration(microseconds: 100),
-        expect: () =>
-            [const WatchlistStatusFetched(true)],
-        verify: (bloc) {
-          verify(mockGetWatchlistStatus.execute(testMovieDetail.id));
         });
   });
 }
