@@ -22,8 +22,7 @@ runTests () {
   cd $1;
   if [ -f "pubspec.yaml" ] && [ -d "test" ]; then
     echo "running tests in $1"
-    fvm use stable
-    fvm flutter pub get
+    flutter pub get
 
     escapedPath="$(echo $1 | sed 's/\//\\\//g')"
 
@@ -31,9 +30,9 @@ runTests () {
     if grep flutter pubspec.yaml > /dev/null; then
       echo "run flutter tests"
       if [ -f "test/all_tests.dart" ]; then
-        fvm flutter test --coverage test/all_tests.dart || error=true
+        flutter test --coverage test/all_tests.dart || error=true
       else
-        fvm flutter test --coverage || error=true
+        flutter test --coverage || error=true
       fi
       if [ -d "coverage" ]; then
         # combine line coverage info from package tests to a common file
@@ -49,7 +48,7 @@ runTests () {
 runReport() {
     if [ -f "coverage/lcov.info" ] && ! [ "$TRAVIS" ]; then
         genhtml coverage/lcov.info -o coverage --no-function-coverage -s -p `pwd`/coverage
-        
+
 		if $IsWindows || $ENV:OS; then
 			start coverage/index.html
 		else
