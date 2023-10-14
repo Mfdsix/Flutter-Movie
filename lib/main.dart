@@ -84,7 +84,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<WatchlistTvBloc>(
           create: (_) => di.locator<WatchlistTvBloc>(),
         ),
-        BlocProvider<WatchlistToggleBloit>(
+        BlocProvider<WatchlistToggleBloc>(
           create: (_) => di.locator<WatchlistToggleBloc>(),
         ),
       ],
