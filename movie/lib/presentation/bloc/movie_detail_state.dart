@@ -28,12 +28,3 @@ class MovieDetailHasData extends MovieDetailState {
   @override
   List<Object> get props => [result, recommendations];
 }
-
-class MovieRecommendationHasData extends MovieDetailState {
-  final List<Movie> recommendations;
-
-  const MovieRecommendationHasData(this.recommendations);
-
-  @override
-  List<Object> get props => [recommendations];
-}

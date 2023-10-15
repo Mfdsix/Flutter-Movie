@@ -18,6 +18,7 @@ import 'package:movie/presentation/pages/movie_detail_page.dart';
 import 'package:movie/presentation/pages/popular_movies_page.dart';
 import 'package:movie/presentation/pages/search_movie_page.dart';
 import 'package:movie/presentation/pages/top_rated_movies_page.dart';
+import 'package:tv/presentation/bloc/tv_detail_bloc.dart';
 import 'package:tv/presentation/bloc/tv_on_airing_bloc.dart';
 import 'package:tv/presentation/bloc/tv_popular_bloc.dart';
 import 'package:tv/presentation/bloc/tv_search_bloc.dart';
@@ -46,6 +47,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -77,6 +80,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<TvTopRatedBloc>(
           create: (_) => di.locator<TvTopRatedBloc>(),
+        ),
+        BlocProvider<TvDetailBloc>(
+          create: (_) => di.locator<TvDetailBloc>(),
         ),
         BlocProvider<TvSearchBloc>(
           create: (_) => di.locator<TvSearchBloc>(),

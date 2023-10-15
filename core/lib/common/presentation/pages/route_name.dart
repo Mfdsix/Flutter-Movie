@@ -5,7 +5,7 @@ class RouteName {
   static const MovieTopRatedPage = "/movie/top-rated";
   static const MovieSearchPage = "/movie/search";
 
-  static const TvHomePage = "/movie";
+  static const TvHomePage = "/tv";
   static const TvDetailPage = "/tv/detail";
   static const TvOnAiringPage = "/tv/on-airing";
   static const TvPopularPage = "/tv/popular";

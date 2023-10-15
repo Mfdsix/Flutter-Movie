@@ -169,10 +169,14 @@ class DetailContent extends StatelessWidget {
                                   return const Center(
                                     child: CircularProgressIndicator(),
                                   );
-                                } else if (state is TvDetailEmpty) {
+                                } else if (state is TvDetailError) {
                                   return const Text("Failed");
                                 } else if (state is TvDetailHasData) {
                                   final recommendations = state.recommendations;
+
+                                  if(recommendations.isEmpty){
+                                    return const Text("No Recommendation Found");
+                                  }
 
                                   return SizedBox(
                                     height: 150,

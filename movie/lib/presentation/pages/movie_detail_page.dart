@@ -175,10 +175,19 @@ class DetailContent extends StatelessWidget {
                             ),
                             BlocBuilder<MovieDetailBloc, MovieDetailState>(
                               builder: (context, state) {
-                                if (state is MovieDetailError) {
+                                if(state is MovieDetailLoading){
+                                  return const SizedBox(
+                                    height: 30,
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }else if (state is MovieDetailError) {
                                   return const Text("Failed");
-                                } else if (state is MovieRecommendationHasData) {
+                                } else if (state is MovieDetailHasData) {
                                   final recommendations = state.recommendations;
+
+                                  if(recommendations.isEmpty){
+                                    return const Text("No Recommendation Found");
+                                  }
                                   return SizedBox(
                                     height: 150,
                                     child: ListView.builder(

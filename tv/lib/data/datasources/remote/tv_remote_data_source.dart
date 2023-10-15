@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:core/common/data/datasources/remote/config.dart';
 import 'package:core/common/exception.dart';
-import 'package:http/http.dart';
+import 'package:http/io_client.dart';
 import 'package:tv/data/models/tv_detail_model.dart';
 import 'package:tv/data/models/tv_model.dart';
 import 'package:tv/data/models/tv_response.dart';
@@ -19,7 +19,7 @@ class TvRemoteDataSourceImpl implements TvRemoteDataSource {
   static const API_KEY = THEMOVIEDB_API_KEY;
   static const BASE_URL = THEMOVIEDB_BASE_URL;
 
-  final Client client;
+  final IOClient client;
 
   TvRemoteDataSourceImpl({required this.client});
 

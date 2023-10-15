@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:core/common/data/datasources/remote/config.dart';
 import 'package:core/common/exception.dart';
-import 'package:http/http.dart';
+import 'package:http/io_client.dart';
 import 'package:movie/data/models/movie_detail_model.dart';
 import 'package:movie/data/models/movie_model.dart';
 import 'package:movie/data/models/movie_response.dart';
@@ -20,7 +20,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
   static const API_KEY = THEMOVIEDB_API_KEY;
   static const BASE_URL = THEMOVIEDB_BASE_URL;
 
-  final Client client;
+  final IOClient client;
 
   MovieRemoteDataSourceImpl({required this.client});
 
