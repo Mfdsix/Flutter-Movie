@@ -200,9 +200,7 @@ class MovieList extends StatelessWidget {
                 borderRadius: const BorderRadius.all(Radius.circular(16)),
                 child: CachedNetworkImage(
                   imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
-                  placeholder: (context, url) => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                  placeholder: (context, url) => _itemLoader(),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
@@ -212,5 +210,13 @@ class MovieList extends StatelessWidget {
         itemCount: movies.length,
       ),
     );
+  }
+
+  Widget _itemLoader(){
+    return const Center(
+      child: Padding(
+      padding: EdgeInsets.all(10.0),
+      child: CircularProgressIndicator()
+    ));
   }
 }
