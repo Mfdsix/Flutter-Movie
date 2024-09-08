@@ -93,9 +93,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
               BlocBuilder<TvOnAiringBloc, TvOnAiringState>(
                   builder: (context, state) {
                 if (state is OnAiringTvLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
+                  return _sectionLoader();
                 } else if (state is OnAiringTvHasData) {
                   return TvList(state.result);
                 } else {
@@ -110,9 +108,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
               BlocBuilder<TvPopularBloc, TvPopularState>(
                   builder: (context, state) {
                 if (state is PopularTvsLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
+                  return _sectionLoader();
                 } else if (state is PopularTvsHasData) {
                   return TvList(state.result);
                 } else {
@@ -126,9 +122,7 @@ class _HomeTvPageState extends State<HomeTvPage> {
               ),
               BlocBuilder<TvTopRatedBloc, TvTopRatedState>(builder: (context, state) {
                 if (state is TopRatedTvsLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
+                  return _sectionLoader();
                 } else if (state is TopRatedTvsHasData) {
                   return TvList(state.result);
                 } else {
@@ -160,6 +154,15 @@ class _HomeTvPageState extends State<HomeTvPage> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _sectionLoader(){
+    return const Center(
+      child: Padding(
+        padding: EdgeInsets.all(20.0),
+        child: CircularProgressIndicator(),
+      )
     );
   }
 }

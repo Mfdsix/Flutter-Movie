@@ -96,9 +96,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               BlocBuilder<MovieNowPlayingBloc, MovieNowPlayingState>(
                   builder: (context, state) {
                 if (state is NowPlayingMoviesLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
+                  return _sectionLoader();
                 } else if (state is NowPlayingMoviesHasData) {
                   final result = state.result;
                   return MovieList(result);
@@ -114,9 +112,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               BlocBuilder<MoviePopularBloc, MoviePopularState>(
                   builder: (context, state) {
                 if (state is PopularMoviesLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
+                  return _sectionLoader();
                 } else if (state is PopularMoviesHasData) {
                   final result = state.result;
                   return MovieList(result);
@@ -132,9 +128,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
               BlocBuilder<MovieTopRatedBloc, MovieTopRatedState>(
                   builder: (context, state) {
                 if (state is TopRatedMoviesLoading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
+                  return _sectionLoader();
                 } else if (state is TopRatedMoviesHasData) {
                   return MovieList(state.result);
                 } else {
@@ -166,6 +160,15 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
           ),
         ),
       ],
+    );
+  }
+
+  Widget _sectionLoader(){
+    return const Center(
+      child: Padding(
+        padding: EdgeInsets.all(20.0),
+        child: CircularProgressIndicator(),
+      )
     );
   }
 }
