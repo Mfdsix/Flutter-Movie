@@ -57,6 +57,7 @@ dependencies:
     path: "tv"
   watchlist:
     path: "watchlist"
+  firebase_analytics: ^10.8.0
 
 dev_dependencies:
   flutter_test:

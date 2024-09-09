@@ -7,15 +7,29 @@ import 'package:movie/presentation/bloc/movie_now_playing_bloc.dart';
 import 'package:movie/presentation/bloc/movie_popular_bloc.dart';
 import 'package:movie/presentation/bloc/movie_top_rated_bloc.dart';
 import 'package:core/common/constants.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 
 class HomeMoviePage extends StatefulWidget {
-  const HomeMoviePage({super.key});
+  const HomeMoviePage({
+    super.key,
+    required this.analytics,
+    required this.observer
+  });
+
+  final FirebaseAnalytics analytics;
+  final FirebaseAnalyticsObserver observer;
 
   @override
   _HomeMoviePageState createState() => _HomeMoviePageState();
 }
 
 class _HomeMoviePageState extends State<HomeMoviePage> {
+
+  void sendScreenViewEvent() async {
+     await widget.analytics?.logScreenView(
+      screenName: 'home-movie-page',
+    );
+  }
   @override
   void initState() {
     super.initState();
@@ -26,6 +40,8 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
         context.read<MoviePopularBloc>().add(const OnFetchPopularMovies()));
     Future.microtask(() =>
         context.read<MovieTopRatedBloc>().add(const OnFetchTopRatedMovies()));
+        
+    sendScreenViewEvent();
   }
 
   @override
