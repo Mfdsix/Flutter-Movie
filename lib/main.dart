@@ -37,12 +37,11 @@ import 'package:watchlist/presentation/pages/watchlist_movies_page.dart';
 import 'package:watchlist/presentation/pages/watchlist_tv_page.dart';
 
 void main() async {
-  di.init();
-
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await di.init();
 
   runApp(const MyApp());
 }

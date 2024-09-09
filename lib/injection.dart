@@ -40,10 +40,13 @@ import 'package:watchlist/domain/usecases/save_watchlist.dart';
 import 'package:watchlist/presentation/bloc/watchlist_movie_bloc.dart';
 import 'package:watchlist/presentation/bloc/watchlist_toggle_bloc.dart';
 import 'package:watchlist/presentation/bloc/watchlist_tv_bloc.dart';
+import 'package:core/common/data/utils/ssl_pinning.dart';
 
 final locator = GetIt.instance;
 
-void init() {
+Future<void> init() async {
+  IOClient ioClient = await SslPinning.ioClient;
+
   // provider
   locator.registerFactory(
     () => MovieNowPlayingBloc(
@@ -162,5 +165,5 @@ void init() {
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
 
   // external
-  locator.registerLazySingleton(() => IOClient());
+  locator.registerLazySingleton<IOClient>(() => ioClient);
 }
