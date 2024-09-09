@@ -8,6 +8,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:tv/domain/entities/tv_detail.dart';
 import 'package:tv/presentation/bloc/tv_detail_bloc.dart';
 import 'package:watchlist/presentation/bloc/watchlist_toggle_bloc.dart';
+import 'package:tv/data/convert.dart';
 
 class TvDetailPage extends StatefulWidget {
   final int id;
@@ -103,11 +104,11 @@ class DetailContent extends StatelessWidget {
                                     return ElevatedButton(
                                       onPressed: () async {
                                         if (!state.watchlistStatus) {
-                                          context.read<WatchlistToggleBloc>().add(OnAddWatchlist(tv.toWatchlist()));
+                                          context.read<WatchlistToggleBloc>().add(OnAddWatchlist(Convert.tvToWatchlist(tv)));
                                           ScaffoldMessenger.of(context).showSnackBar(
                                               const SnackBar(content: Text("Added to Watchlist")));
                                         } else {
-                                          context.read<WatchlistToggleBloc>().add(OnRemoveWatchlist(tv.toWatchlist()));
+                                          context.read<WatchlistToggleBloc>().add(OnRemoveWatchlist(Convert.tvToWatchlist(tv)));
                                           ScaffoldMessenger.of(context).showSnackBar(
                                               const SnackBar(content: Text("Removed from Watchlist")));
                                         }

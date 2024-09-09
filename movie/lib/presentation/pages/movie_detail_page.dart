@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:movie/domain/entities/movie_detail.dart';
 import 'package:movie/presentation/bloc/movie_detail_bloc.dart';
+import 'package:movie/data/convert.dart';
 import 'package:watchlist/presentation/bloc/watchlist_toggle_bloc.dart';
 
 class MovieDetailPage extends StatefulWidget {
@@ -107,14 +108,14 @@ class DetailContent extends StatelessWidget {
                                     onPressed: () async {
                                       if (!state.watchlistStatus) {
                                         context.read<WatchlistToggleBloc>()
-                                            .add(OnAddWatchlist(movie.toWatchlist()));
+                                            .add(OnAddWatchlist(Convert.movieToWatchlist(movie)));
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                             const SnackBar(content: Text(
                                                 "Added to Watchlist")));
                                       } else {
                                         context.read<WatchlistToggleBloc>()
-                                            .add(OnRemoveWatchlist(movie.toWatchlist()));
+                                            .add(OnRemoveWatchlist(Convert.movieToWatchlist(movie)));
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                             const SnackBar(content: Text(
