@@ -294,12 +294,12 @@ class ProductionCountry {
 }
 
 class Season {
-  String airDate;
+  String? airDate;
   int episodeCount;
   int id;
   String name;
   String overview;
-  String posterPath;
+  String? posterPath;
   int seasonNumber;
   double voteAverage;
 
