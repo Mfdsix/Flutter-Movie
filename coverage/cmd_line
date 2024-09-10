@@ -1,0 +1,1 @@
+genhtml coverage/lcov.info -o coverage --no-function-coverage -s -p /Users/maputh/Development/Backend/workout/dcd-flutter-expert/coverage
