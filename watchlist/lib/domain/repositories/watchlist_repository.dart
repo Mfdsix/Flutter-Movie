@@ -1,6 +1,6 @@
 import 'package:core/common/failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:watchlist/data/models/watchlist_table.dart';
+import 'package:watchlist/domain/entities/watchlist_table.dart';
 
 abstract class WatchlistRepository {
   Future<Either<Failure, List<WatchlistTable>>> getWatchlistByType(String type);

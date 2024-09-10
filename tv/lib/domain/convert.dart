@@ -1,4 +1,4 @@
-import 'package:watchlist/data/models/watchlist_table.dart';
+import 'package:watchlist/domain/entities/watchlist_table.dart';
 import 'package:tv/domain/entities/tv_detail.dart';
 
 class Convert {

@@ -1,6 +1,6 @@
 import 'package:core/common/exception.dart';
 import 'package:watchlist/data/datasources/helpers/database_helper.dart';
-import 'package:watchlist/data/models/watchlist_table.dart';
+import 'package:watchlist/domain/entities/watchlist_table.dart';
 
 abstract class WatchlistLocalDataSource {
   Future<String> insertWatchlist(WatchlistTable watchlist);

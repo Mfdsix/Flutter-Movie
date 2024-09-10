@@ -1,5 +1,5 @@
 
-import 'package:watchlist/data/models/watchlist_table.dart';
+import 'package:watchlist/domain/entities/watchlist_table.dart';
 import 'package:watchlist/domain/entities/movie.dart';
 import 'package:watchlist/domain/entities/tv.dart';
 
