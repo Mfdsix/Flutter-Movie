@@ -1,7 +1,7 @@
 import 'package:core/common/domain/entities/genre.dart';
 import 'package:tv/domain/entities/tv.dart';
 import 'package:tv/domain/entities/tv_detail.dart';
-import 'package:watchlist/data/models/watchlist_table.dart';
+import 'package:watchlist/domain/entities/watchlist_table.dart';
 
 final testWatchlistTv = Tv.watchlist(
   id: 1,
