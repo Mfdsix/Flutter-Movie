@@ -8,7 +8,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:tv/domain/entities/tv_detail.dart';
 import 'package:tv/presentation/bloc/tv_detail_bloc.dart';
 import 'package:watchlist/presentation/bloc/watchlist_toggle_bloc.dart';
-import 'package:tv/data/convert.dart';
+import 'package:tv/domain/convert.dart';
 
 class TvDetailPage extends StatefulWidget {
   final int id;

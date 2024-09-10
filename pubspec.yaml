@@ -48,6 +48,7 @@ dependencies:
   rxdart: ^0.27.7
   firebase_core: ^2.17.0
   firebase_crashlytics: ^3.3.7
+  firebase_analytics: ^10.8.0
 
   core:
     path: "core"
@@ -57,7 +58,6 @@ dependencies:
     path: "tv"
   watchlist:
     path: "watchlist"
-  firebase_analytics: ^10.8.0
 
 dev_dependencies:
   flutter_test:

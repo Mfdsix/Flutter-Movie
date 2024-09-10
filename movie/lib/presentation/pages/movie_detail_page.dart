@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:movie/domain/entities/movie_detail.dart';
 import 'package:movie/presentation/bloc/movie_detail_bloc.dart';
-import 'package:movie/data/convert.dart';
+import 'package:movie/domain/convert.dart';
 import 'package:watchlist/presentation/bloc/watchlist_toggle_bloc.dart';
 
 class MovieDetailPage extends StatefulWidget {
